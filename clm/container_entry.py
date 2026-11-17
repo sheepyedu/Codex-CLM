@@ -73,7 +73,7 @@ stream_max_retries = 0
 '''
         (Path(os.environ["CODEX_HOME"]) / "config.toml").write_text(config)
         os.environ["CODEX_CLM_LOCAL_TOKEN"] = "codex-clm-local-session"
-        return subprocess.call(["/opt/codex/bin/codex", *args])
+        return subprocess.call(["/opt/codex/bin/codex", "--no-daemon", *args])
 
 
 if __name__ == "__main__":

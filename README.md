@@ -36,7 +36,7 @@ flowchart LR
 - 项目启动器给容器生成独立 Codex 配置。新增 `developer_instructions` 指导模型用 `clm-context status/show/edit` 查找旧工具交换、按需将精确数据落盘、提交编辑和确认通过后回读。
 - 网关接收携带完整历史的 `POST /v1/responses`，要求 `store:false`，保留原生工具定义和 SSE。编辑器按 `call_id` 对齐完整 function/custom tool 调用及结果，以整组为单位移除历史，并处理与该组相邻的 assistant 输出及 reasoning 条目。快照省略原始 reasoning 条目。
 - 最新完成的工具组、用户消息和 developer 消息受保护。编辑校验当前快照版本、候选 ID 和 JSON 字节数，要求应用后的 `input` 严格缩短。有短记忆时，网关追加 `CLM memory written by the assistant:` 和记忆到首条 user 消息。生效改动只投影到模型请求，本地原生记录保存原来的工具历史。
-- 容器运行 UID 1005，根文件系统和程序只读，网络仅 loopback。原生 shell 在这个容器内运行。宿主机的 Docker socket 和真实 API 凭据均不会挂入容器。
+- 容器运行 UID 1005，根文件系统和程序只读，网络仅 loopback。启动器默认传入 `--no-daemon`，交互和批处理均在各自容器内运行。原生 shell 在这个容器内运行。宿主机的 Docker socket 和真实 API 凭据均不会挂入容器。
 
 当前范围为单会话推理。CLM 状态与单次启动一起存续，跨启动恢复、服务端历史、远程 compaction、多 Agent 及训练属于独立工作。请求 JSON 的字节变化可通过网关回执核实。
 
