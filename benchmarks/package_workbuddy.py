@@ -189,6 +189,25 @@ def production(base, audit, output, scan_gpt):
             or output.resolve().is_relative_to(base.resolve()) or accepted["pairs"] != 65
             or accepted["plan_sha256"] != sha(run / "plan.json") or not (audit / "REPORT.md").is_file()):
         raise ValueError("Complete audited experiment and report are required")
+    binding_path = audit / "native-task-binding.json"
+    if not binding_path.is_file():
+        raise ValueError("Final native and API task binding proof is required before publication")
+    binding = load(binding_path)
+    plan_rows = load(run / "plan.json")["tasks"]
+    entries = binding.get("trials", [])
+    expected_keys = [(r["position"], arm) for r in plan_rows for arm in ("native", "clm")]
+    if (binding.get("selected_trials_verified") != 130 or len(entries) != 130
+            or not binding.get("all_native_completions_and_task_bindings_verified")
+            or binding.get("threads") != accepted["threads"] or Path(binding.get("run", "/")).resolve() != run.resolve()
+            or [(r["position"], r["arm"]) for r in entries] != expected_keys
+            or binding.get("source_sha256") != sha(Path(__file__).with_name("check_workbuddy_binding.py"))
+            or binding.get("native_helper_sha256") != sha(Path(__file__).with_name("provision_workbuddy_cbc.py"))):
+        raise ValueError("Final task binding proof is incomplete or from another run/source")
+    by_position = {r["position"]: r for r in plan_rows}
+    for entry in entries:
+        if (entry["instruction_sha256"] != by_position[entry["position"]]["instruction_sha256"]
+                or entry["native_completion"]["thread"] != accepted["threads"][entry["arm"]]):
+            raise ValueError("Final task binding proof disagrees with the frozen task or original thread")
     expected = {}
     for line in (audit / "sha256.jsonl").open():
         record = json.loads(line)

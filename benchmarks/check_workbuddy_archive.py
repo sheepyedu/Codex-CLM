@@ -89,6 +89,16 @@ def check(sample):
         rejected(lambda: production(base, audit, root / "publication", False))
         assert not (root / "publication").exists()
         checks.append("refuse publication before all 65 pairs pass audit")
+        fake_run = base / "formal-65"
+        fake_run.mkdir()
+        (fake_run / "plan.json").write_text(json.dumps({"tasks": []}))
+        (fake_run / "accepted.json").write_text(json.dumps({"pairs": 65,
+            "plan_sha256": sha(fake_run / "plan.json")}))
+        (audit / "summary.json").write_text(json.dumps({"groups": {"all": {"pairs": 65}}, "run": str(fake_run)}))
+        (audit / "REPORT.md").write_text("CPU fixture only")
+        rejected(lambda: production(base, audit, root / "missing-binding-publication", False))
+        assert not (root / "missing-binding-publication").exists()
+        checks.append("refuse numeric65 claim without complete native/API task binding proof")
     return {"passed": True, "checks": checks, "count": len(checks), "model_api_calls": 0,
             "sample_sha256": {p.name: sha(p) for p in sample.iterdir() if p.is_file()}}
 

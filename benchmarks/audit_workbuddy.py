@@ -563,6 +563,11 @@ def main():
         paired.append(values)
     if len(set(threads.values())) != 2 or threads != accepted["threads"]:
         raise ValueError("Expected precisely two independent native threads")
+    if len(rows) == 65:
+        from check_workbuddy_binding import check as check_binding
+        contract_path = args.run.parent / "MANAGER_STATE.json"
+        original_threads = load(contract_path)["formal_threads"] if contract_path.is_file() else accepted["threads"]
+        check_binding(args.run, args.output / "native-task-binding.json", True, original_threads)
     groups["all"] = paired
     stats = {}
     for label, group in groups.items():

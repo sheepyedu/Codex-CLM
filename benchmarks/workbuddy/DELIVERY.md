@@ -33,6 +33,17 @@ scores. It independently reconstructs all CLM projections, preserving protected
 messages and complete tool-call batches. Failed-attempt edit and compaction events
 are counted separately from selected-trial events. Copied prefixes are deduplicated.
 
+For the full65 plan, `check_workbuddy_binding.py` also binds every official
+instruction to the completed native turn's actual `turn/start` request and a
+captured raw/sent GPT Responses request. It checks the real successful response,
+native completion event, original thread and ordered task prefix. Original thread
+IDs use `MANAGER_STATE.json` when present. The final auditor writes
+`native-task-binding.json`; production packaging requires its complete130 entries,
+matching frozen question hashes, original threads and checker source hashes.
+An accepted count or numeric score alone cannot satisfy this gate.
+`check_workbuddy_binding_cpu.py` qualifies the check with copied real first-pair
+bytes and tamper cases, including changed questions with recomputed hashes.
+
 `official-judge-quality.json` examines technical judge fields. A low semantic
 score remains a result. Empty final judge responses, image failures and unresolved
 technical fallbacks block final delivery. A stale retry-error field accompanied
