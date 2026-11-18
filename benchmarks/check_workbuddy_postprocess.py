@@ -83,6 +83,15 @@ def main(base, run, output):
         assert judge_quality(root, {})["requires_review"]
         checks.append("reject missing, unsubmitted and inconsistent interactive verdicts despite stage exit zero")
         checks.append("reject CBC error terminal masked by a successful tee pipeline")
+        score.write_text(json.dumps({"judges": [{"ok": True, "metadata": {
+            "script_exit_code": 0, "raw": {"failed_checks": [{
+                "name": "score_eval_core_failed", "group": "scorer",
+                "detail": "AttributeError: list has no attribute values"}]}}}]}))
+        assert judge_quality(root, {})["requires_review"]
+        score.write_text(json.dumps({"failed_checks": [{"name": "artifact_refs_consistent",
+            "group": "evidence_export_refs", "detail": "wrong JSON type"}]}))
+        assert not judge_quality(root, {})["requires_review"]
+        checks.append("flag deterministic evaluator crashes masked by exit zero, preserve ordinary rubric failures")
     once, once_count = clm_edit_ledger([source.parent.parent.parent])
     twice, twice_count = clm_edit_ledger([source.parent.parent.parent] * 2)
     assert once == twice and once_count == twice_count

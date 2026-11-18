@@ -7,12 +7,42 @@ import os
 from pathlib import PurePosixPath
 import stat
 import subprocess
+import tarfile
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 FORMAT = "workbuddy-content-chunks-v1"
 CHUNK_SIZE = 4 * 1024 * 1024
+
+
+def chunk_lengths(path, size, maximum):
+    """Align raw tar chunks at member boundaries without extracting or rewriting it.
+
+    Docker commits often shift identical large layers by a small header offset.
+    Variable chunk lengths already belong to v1; every raw byte, including tar
+    headers, padding and trailer, still participates in the original file recipe.
+    Malformed/oversized metadata falls back to ordinary fixed-size chunking.
+    """
+    boundaries = {0, size}
+    if path.suffix == ".tar" and size > maximum:
+        try:
+            with tarfile.open(path, "r:") as archive:
+                for count, member in enumerate(archive, 1):
+                    offsets = (member.offset, member.offset_data, member.offset_data + member.size)
+                    if count > 50_000 or not all(type(v) is int and 0 <= v <= size for v in offsets):
+                        raise ValueError("Tar metadata exceeds bounded chunk planning")
+                    boundaries.update(offsets)
+        except (tarfile.TarError, OSError, ValueError, OverflowError):
+            boundaries = {0, size}
+    previous = 0
+    for boundary in sorted(boundaries):
+        remaining = boundary - previous
+        while remaining:
+            length = min(maximum, remaining)
+            yield length
+            remaining -= length
+        previous = boundary
 
 
 def sha(path):
@@ -41,6 +71,8 @@ def enumerate_tree(base):
 def make_archive(base, destination, secrets=(), expected=None, chunk_size=CHUNK_SIZE):
     """Chunking removes duplicate copied prefixes while retaining all original path metadata."""
     base, destination = base.resolve(), destination.resolve()
+    if type(chunk_size) is not int or chunk_size <= 0:
+        raise ValueError("Content chunk size must be positive")
     if destination.is_relative_to(base):
         raise ValueError("Archive output must be outside its source tree")
     expected = expected or {}
@@ -64,7 +96,10 @@ def make_archive(base, destination, secrets=(), expected=None, chunk_size=CHUNK_
             elif stat.S_ISREG(before.st_mode):
                 digest, identifiers, length, tail = hashlib.sha256(), [], 0, b""
                 with path.open("rb") as source:
-                    while data := source.read(chunk_size):
+                    for planned in chunk_lengths(path, before.st_size, chunk_size):
+                        data = source.read(planned)
+                        if len(data) != planned:
+                            raise ValueError(f"Source truncated while packaging: {relative}")
                         scan = tail + data
                         if any(secret in scan for secret in secrets):
                             raise ValueError(f"Publication credential match in file: {relative}")
@@ -98,6 +133,7 @@ def make_archive(base, destination, secrets=(), expected=None, chunk_size=CHUNK_
         if not set(expected) <= paths:
             raise ValueError("Some audited paths are missing from the archive scope")
         header = {"format": FORMAT, "root": base.name, "chunk_size": chunk_size,
+                  "chunk_strategy": "bounded raw tar member alignment; fixed-size fallback",
                   "created_at": datetime.now(timezone.utc).isoformat(), "entries": len(entries),
                   "logical_bytes": logical_bytes, "unique_chunk_bytes": unique_bytes,
                   "unique_chunks": len(chunks), "special_entries": sum(e["kind"] == "special" for e in entries),

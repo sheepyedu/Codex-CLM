@@ -315,6 +315,13 @@ def judge_quality(trial, result):
             for index, item in enumerate(value):
                 visit(item, f"{location}[{index}]")
         elif isinstance(value, dict):
+            if value.get("name") in {"score_eval_core_failed", "evaluator_runtime_error",
+                                     "eval_core_import_failed", "evaluator_emitted_no_checks"}:
+                identity = ("deterministic_evaluator_failure", value["name"])
+                if identity not in seen:
+                    seen.add(identity)
+                    findings.append({"location": location, "field": identity[0],
+                                     "value": value["name"], "detail": value.get("detail")})
             meta = value.get("judge_meta")
             if value.get("judge_type") == "agent" and value.get("id"):
                 identity = ("missing_interactive_verdict", value["id"])
@@ -418,7 +425,17 @@ def judge_repair(root, row, arm, receipt, trial):
             if wire.get("response_sha256") and sha(filename.parent / "response.raw") != wire["response_sha256"]:
                 raise ValueError("Judge repair response bytes changed")
         source_trial = Path(repair["source_trial"])
-        for name in ("agent.patch", "agent.workspace.tar.gz"):
+        artifacts = repair.get("actor_artifacts", ["agent.patch", "agent.workspace.tar.gz"])
+        if artifacts not in (["agent.patch"], ["agent.patch", "agent.workspace.tar.gz"]):
+            raise ValueError("Unsupported original actor artifact contract")
+        if artifacts == ["agent.patch"]:
+            if (repair.get("repair_kind") != "office_artifact_refs_type_guard"
+                    or not repair.get("original_patch_exact")
+                    or not repair.get("original_evaluation_reproduced")
+                    or repair.get("actor_model_calls") != 0
+                    or repair.get("grading_model_calls") != 0):
+                raise ValueError("Patch-only repair lacks deterministic restoration evidence")
+        for name in artifacts:
             if sha(trial / "verifier" / name) != repair["source_files_sha256"][str(source_trial / "verifier" / name)]:
                 raise ValueError("Judge repair was produced for different actor artifacts")
         result = load(path.parent / "result.json")
@@ -479,7 +496,8 @@ def audit_trial(root, row, arm, previous):
         "thread": receipt["thread"],
         "regraded": bool(receipt.get("regrade_result")),
         "judge_repair": {"evidence": str(repair[0]), "sha256": sha(repair[0]),
-                         "item_id": repair[1]["item_id"], "original_reward": valid_score(receipt)} if repair else None,
+                         "item_id": repair[1].get("item_id", repair[1].get("repair_kind")),
+                         "original_reward": valid_score(receipt)} if repair else None,
         "judge_quality": quality,
         "reward": valid_score({"reward": repair[1]["reward"]}) if repair else valid_score(receipt),
         "requests": receipt["wire"]["requests"],

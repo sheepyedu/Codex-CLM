@@ -4,11 +4,13 @@ import argparse
 import hashlib
 import json
 import os
+import io
 import shutil
+import tarfile
 import tempfile
 from pathlib import Path
 
-from package_workbuddy import make_archive, production, sha, split_archive, verify_archive
+from package_workbuddy import chunk_lengths, make_archive, production, sha, split_archive, verify_archive
 from restore_workbuddy import extract, join_parts
 
 
@@ -38,6 +40,30 @@ def check(sample):
         (base / "relative-link").symlink_to("中文.txt")
         (base / "directory-link").symlink_to("副本", target_is_directory=True)
         os.utime(base / "tool", ns=(1_600_000_000_000_000_000,) * 2)
+        payload = os.urandom(32768)
+        expected_shared = {hashlib.sha256(payload[i:i+4096]).hexdigest() for i in range(0, len(payload), 4096)}
+        aligned = []
+        for number, prefix_size in enumerate((100, 5000)):
+            path = base / f"image-{number}.tar"
+            with tarfile.open(path, "w", format=tarfile.USTAR_FORMAT) as tar:
+                for name, data in (("prefix", b"p" * prefix_size), ("layer.tar", payload)):
+                    member = tarfile.TarInfo(name)
+                    member.size = len(data)
+                    tar.addfile(member, io.BytesIO(data))
+            pieces = []
+            with path.open("rb") as stream:
+                for length in chunk_lengths(path, path.stat().st_size, 4096):
+                    pieces.append(stream.read(length))
+            assert b"".join(pieces) == path.read_bytes()
+            aligned.append({hashlib.sha256(p).hexdigest() for p in pieces})
+        assert expected_shared <= aligned[0] & aligned[1]
+        checks.append("deduplicate shifted tar layers while preserving original headers, padding and file bytes")
+        broken = base / "malformed.tar"
+        broken.write_bytes(b"invalid tar header" * 1000)
+        lengths = list(chunk_lengths(broken, broken.stat().st_size, 4096))
+        assert sum(lengths) == broken.stat().st_size and all(0 < n <= 4096 for n in lengths)
+        assert lengths[:-1] == [4096] * (len(lengths)-1)
+        checks.append("malformed tar falls back to complete fixed-size raw-byte storage")
         expected = {f"{base.name}/{p.relative_to(base)}": {"size": p.stat().st_size, "sha256": sha(p)}
                     for p in base.rglob("*") if p.is_file() and not p.is_symlink()}
         archive = root / "fixture.zip"

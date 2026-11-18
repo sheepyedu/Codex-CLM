@@ -133,10 +133,24 @@ regular files; special endpoints are recorded rather than recreated.
 `check_workbuddy_archive.py` exercises real wire-byte roundtripping, multipart
 integrity, Unicode/empty/executable/link metadata, tampering rejection,
 cross-chunk canary detection and incomplete-publication rejection.
+Raw `.tar` checkpoints use bounded member-aligned chunks to share identical layers
+even when headers shift their offsets. Original headers, padding and trailers are
+stored unchanged; full-file SHA checks and restoration remain the same v1 format.
+Malformed tar metadata falls back to fixed-size storage. No checkpoint is excluded.
 `check_workbuddy_postprocess.py` validates actual completed trials plus protected
 text mutation, failed-judge classification and copied-prefix deduplication.
 Both checks make zero model API calls. Running-stage checks are explicitly not
 the final 65-pair audit.
+
+Task49's Office evaluator repair restores both original patches in the frozen
+image, reproduces the original native exception and CLM score, then changes only
+the unchecked `artifact_refs.values()` access and its existing type predicate.
+Wrong types fail that check; the 134-item rubric remains intact. Missing original
+`case.yaml` and `instruction.md` workspace fixtures remain failed checks. One
+set-derived profile diagnostic is compared after sorting its displayed values;
+verdicts and values remain unchanged. `--finalize-existing` validates completed
+CPU grading trials without repeating them. Original failures and all versions are
+retained alongside the applied score overlays.
 
 Publish in a new dated directory under `Codex CLM` in
 `sheepyedu/Skil-RSI-Repository`, preserving earlier CL-Bench content. Verify the
