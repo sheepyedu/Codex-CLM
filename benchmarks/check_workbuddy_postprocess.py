@@ -60,6 +60,24 @@ def main(base, run, output):
         score.write_text(json.dumps(item))
         assert judge_quality(root, {})["requires_review"]
         checks.append("flag image-input failures despite a parsed textual verdict")
+        agent_item = {"id": "agent-fixture", "judge_type": "agent", "status": "fail",
+                      "source": "static", "judge_meta": {}}
+        score.write_text(json.dumps(agent_item))
+        assert judge_quality(root, {})["requires_review"]
+        agent_item.update(status="pass", source="agent_judge", judge_meta={
+            "judge": "agent_judge", "agent_returncode": 0, "model": "gpt-6.1-sol"})
+        score.write_text(json.dumps(agent_item))
+        assert judge_quality(root, {})["requires_review"]
+        agent_log = root / "verifier/agent-judge/agent-fixture.json"
+        agent_log.parent.mkdir()
+        agent_log.write_text(json.dumps({"verdict": "pass", "agent_returncode": 0, "model": "gpt-6.1-sol"}))
+        assert not judge_quality(root, {})["requires_review"]
+        agent_log.write_text(json.dumps({"verdict": "fail", "agent_returncode": 0, "model": "gpt-6.1-sol"}))
+        assert judge_quality(root, {})["requires_review"]
+        agent_item["status"] = "fail"
+        score.write_text(json.dumps(agent_item))
+        assert not judge_quality(root, {})["requires_review"]
+        checks.append("reject missing, unsubmitted and inconsistent interactive verdicts despite stage exit zero")
     once, once_count = clm_edit_ledger([source.parent.parent.parent])
     twice, twice_count = clm_edit_ledger([source.parent.parent.parent] * 2)
     assert once == twice and once_count == twice_count

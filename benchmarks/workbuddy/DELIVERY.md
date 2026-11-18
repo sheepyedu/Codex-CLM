@@ -49,6 +49,30 @@ receipt and official source hashes must remain unchanged. The repair lives under
 overwriting original results. Additional judge requests enter the all-attempt
 usage ledger.
 
+The official Web interactive stage also needs CodeBuddy CLI 2.109.3. Its runtime
+npm installation fails in an offline task container. `provision_workbuddy_cbc.py`
+uses an integrity-verified official npm bundle, qualified offline with the CLI
+version and a real Linux PTY. It installs only in this experiment's own Web
+container after a successful actor turn has closed, preserving actor home hashes.
+It does not modify the task images or the running actor controller.
+
+`repair_workbuddy_agent_judge.py` restores an already completed actor's exact
+patch on the frozen image, verifies every archived changed file, reproduces the
+original official score, and runs only the missing official agent rubric items.
+It keeps all other original verdicts and requires valid per-item verdict logs and
+actual submissions, not just an outer stage exit code. Its network is disabled;
+GPT judge calls use the protected local bridge. Actor calls remain zero. The
+original results, all judge requests, tool traces, CBC sessions and repair
+implementation are retained. The auditor checks the resulting separate overlay.
+If one interactive item fails technically after others have valid submitted
+verdicts, `--seed PREVIOUS_PARTIAL_RECOVERY` verifies the previous original-file
+hashes and unchanged workspace, reuses those valid item logs and evidence, and
+selects only the unfinished official items. It does not repeat completed judge
+work. Selection is a wrapper around the official scoped-item function; the case,
+rubric and prompt builder remain unchanged. Actor Responses have complete-stream
+delivery protection; judge Chat Completions preserve their original stream and
+are checked independently for valid final judgments.
+
 ## Complete archive
 
 `snapshot_workbuddy_inputs.py` preserves the exact 65 selected formal tasks and

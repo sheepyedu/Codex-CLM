@@ -301,6 +301,20 @@ def judge_quality(trial, result):
                 visit(item, f"{location}[{index}]")
         elif isinstance(value, dict):
             meta = value.get("judge_meta")
+            if value.get("judge_type") == "agent" and value.get("id"):
+                identity = ("missing_interactive_verdict", value["id"])
+                verdict_path = trial / "verifier/agent-judge" / (value["id"] + ".json")
+                verdict = load(verdict_path) if verdict_path.is_file() else {}
+                valid = (isinstance(meta, dict) and meta.get("judge") == "agent_judge"
+                         and meta.get("agent_returncode") == 0
+                         and value.get("status") in ("pass", "fail")
+                         and verdict.get("agent_returncode") == 0
+                         and verdict.get("verdict") == value.get("status")
+                         and verdict.get("model") == meta.get("model") == "gpt-6.1-sol")
+                if not valid and identity not in seen:
+                    seen.add(identity)
+                    findings.append({"location": location, "item_id": value["id"],
+                                     "field": "missing_interactive_verdict", "value": True})
             if isinstance(meta, dict):
                 if meta.get("model"):
                     models.add(str(meta["model"]))
@@ -378,6 +392,15 @@ def judge_repair(root, row, arm, receipt, trial):
         for filename, expected in repair["repair_files_sha256"].items():
             if sha(path.parent / filename) != expected:
                 raise ValueError(f"Judge repair evidence changed: {filename}")
+        for filename in (path.parent / "wire").glob("*/receipt.json"):
+            wire = load(filename)
+            raw, sent = filename.parent / "request.raw.json", filename.parent / "request.sent.json"
+            if (wire.get("path") != "/v1/chat/completions" or load(raw).get("model") != "gpt-6.1-sol"
+                    or sha(raw) != wire.get("raw_sha256") or sha(sent) != wire.get("sent_sha256")
+                    or raw.read_bytes() != sent.read_bytes()):
+                raise ValueError("Judge repair changed a request or used an actor/model route")
+            if wire.get("response_sha256") and sha(filename.parent / "response.raw") != wire["response_sha256"]:
+                raise ValueError("Judge repair response bytes changed")
         source_trial = Path(repair["source_trial"])
         for name in ("agent.patch", "agent.workspace.tar.gz"):
             if sha(trial / "verifier" / name) != repair["source_files_sha256"][str(source_trial / "verifier" / name)]:
