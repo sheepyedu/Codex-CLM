@@ -6,6 +6,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import statistics
 from collections import defaultdict
 from datetime import datetime
@@ -149,6 +150,71 @@ def compaction_ledger(roots):
                                "arm": options.get("arm") or next((a for a in ("native", "clm") if a in path.parts), None),
                                "protective": protective}
     return sorted(events.values(), key=lambda x: x.get("time_ns") or 0)
+
+
+def task_attempt_ledger(roots):
+    """Count actual Harbor trial directories once, retaining incomplete startups and aliases."""
+    entries = {}
+    for root in roots:
+        plan = load(root / "plan.json") if (root / "plan.json").exists() else {}
+        rows = {r["position"]: r for r in plan.get("tasks", [])}
+        for arm in ("native", "clm"):
+            for trial in sorted((root / arm / "trials").glob("*")):
+                if not trial.is_dir():
+                    continue
+                result_path = trial / "result.json"
+                result = load(result_path) if result_path.is_file() else {}
+                identity = (trial.name, result.get("id") or result.get("started_at"))
+                if identity in entries:
+                    existing = entries[identity]
+                    if existing["result_sha256"] != (sha(result_path) if result_path.is_file() else None):
+                        raise ValueError("Copied physical trial results disagree")
+                    if str(trial) not in existing["aliases"]:
+                        existing["aliases"].append(str(trial))
+                    continue
+                options_path = trial / "agent/run-options.json"
+                options = load(options_path) if options_path.is_file() else {}
+                native_path = trial / "agent/native-result.json"
+                native = load(native_path) if native_path.is_file() else {}
+                completed, item_starts = {}, defaultdict(int)
+                timeline = trial / "agent/native.jsonl"
+                if timeline.is_file():
+                    for line in timeline.open():
+                        event = json.loads(line).get("data") or {}
+                        params = event.get("params") or {}
+                        if event.get("method") == "turn/completed":
+                            completed = params.get("turn") or {}
+                        elif event.get("method") == "item/started":
+                            item_starts[(params.get("item") or {}).get("type", "unknown")] += 1
+                match = re.search(r"-(?:native|clm)-(\d{3})(?:-r\d+)?$", trial.name)
+                position = int(match[1]) if match else None
+                row = rows.get(position)
+                marker = options.get("marker") or (row or {}).get("marker") or ""
+                scope = ("formal" if marker.startswith("WB_CODEX_FORMAL_") else
+                         "pilot" if marker.startswith("WB_CODEX_PILOT_") else "auxiliary_or_unclassified")
+                entries[identity] = {"trial_name": trial.name, "trial_id": result.get("id"),
+                    "arm": arm, "scope": scope, "position": position,
+                    "task": (row or {}).get("task"), "marker": marker,
+                    "started_at": result.get("started_at"), "finished_at": result.get("finished_at"),
+                    "thread": native.get("thread"), "native_turn": native.get("turn") or completed.get("id"),
+                    "native_turn_status": completed.get("status"),
+                    "native_turn_error": completed.get("error"), "observed_item_starts": dict(item_starts),
+                    "app_server_exit": native.get("native_exit"), "result_present": bool(result),
+                    "trial_exception": bool(result.get("exception_info")),
+                    "original_reward": (result.get("verifier_result") or {}).get("rewards"),
+                    "result_sha256": sha(result_path) if result_path.is_file() else None,
+                    "evidence": str(trial), "aliases": [str(trial)]}
+    records = sorted(entries.values(), key=lambda r: (r["started_at"] or "", r["trial_name"]))
+    groups = defaultdict(list)
+    for record in records:
+        if record["scope"] == "formal":
+            groups[(record["position"], record["arm"], record["task"])].append(record)
+    counts = [{"position": position, "arm": arm, "task": task, "physical_trial_directories": len(records),
+               "with_result": sum(r["result_present"] for r in records),
+               "without_result": sum(not r["result_present"] for r in records),
+               "with_exception": sum(r["trial_exception"] for r in records)}
+              for (position, arm, task), records in sorted(groups.items())]
+    return records, counts
 
 
 def projection_proof(path, event):
@@ -502,6 +568,10 @@ def main():
         ledger, totals = all_attempt_ledger(roots)
         write_json(args.output / "all-provider-attempts.json", ledger)
         write_json(args.output / "all-provider-usage.json", totals)
+        task_attempts, task_counts = task_attempt_ledger(roots)
+        write_json(args.output / "all-task-attempts.json", {"trials": task_attempts,
+            "scope": "Observed Harbor trial directories, including incomplete startups; copied directories counted once. Management-gate failures outside Harbor remain in the full archive and are not actor trials."})
+        write_json(args.output / "formal-task-attempt-counts.json", task_counts)
         compactions = compaction_ledger(roots)
         write_json(args.output / "all-native-compactions.json", compactions)
         write_json(args.output / "formal-native-compactions.json", [
