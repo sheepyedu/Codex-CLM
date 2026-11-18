@@ -40,6 +40,12 @@ flowchart LR
 
 当前范围为单会话推理。CLM 状态与单次启动一起存续，跨启动恢复、服务端历史、远程 compaction、多 Agent 及训练属于独立工作。请求 JSON 的字节变化可通过网关回执核实。
 
+## WorkBuddy 持续会话对照
+
+[WorkBuddy 适配器](benchmarks/workbuddy/README.md)提供两臂各自保持同一原生 thread、同题同序串行的评测入口。它通过原生 app-server 续接、独立任务工作区、宿主请求记录、原生容量压缩和失败检查点恢复衔接多道题目。CLM 常规编辑仍作用于 API 投影，原生 compaction 实际改变 CLI 活跃历史；两者分别留证。该适配器独立于上面的单次启动器。
+
+固定方案为正式65题（Code20、Office12、Security15、Web18），先完成四类各一题的配对试跑。执行完成与成绩以实际轨迹和最终审计为准。[交付与恢复说明](benchmarks/workbuddy/DELIVERY.md)包含提示词/框架图生成、逐项评分故障检查、原作答补评、全轨迹归档和分卷还原入口。
+
 ## 二进制和复现
 
 服务器使用 npm 官方平台包 `@openai/codex@0.169.0-linux-x64`。固定包来源和校验：

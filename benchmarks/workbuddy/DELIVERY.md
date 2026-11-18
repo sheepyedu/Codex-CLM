@@ -1,0 +1,109 @@
+# WorkBuddy delivery and restoration
+
+The running experiment is an isolated Codex CLI 0.169.0 installation using
+`gpt-6.1-sol`. Each arm continues its original thread; tasks are strictly ordered
+`native_i`, `clm_i`, then task `i+1`. The final plan has 65 paired tasks:
+Code20, Office12, Security15, Web18. The original 60-task reference prefix is
+unchanged; five official Security tasks are appended to both original threads.
+
+Scientific controller snapshots are immutable. New transport/environment fixes
+have their own source directory, hashes and regression receipts. Postprocessing
+scripts do not alter the running controller or accepted actor artifacts.
+
+## Framework and prompts
+
+`describe_workbuddy_framework.py SOURCE RUN OUTPUT` extracts exact prompt text
+from Python AST and renders a detailed Mermaid source plus a PNG/SVG/PDF overview.
+Orange marks added adapters, including common wiring; blue marks original Codex;
+green marks the official benchmark. `PROMPTS.json` includes source line numbers
+and hashes. The detailed `FRAMEWORK.md` distinguishes the common task wrapper
+from the CLM developer instruction, dynamic memory and ordinary tool observations.
+
+Routine CLM edits change the outgoing API projection. They do not delete the
+CLI's own active history. Original Codex compaction, including the CLM arm's
+explicit capacity safeguard, changes that active history while preserving the
+thread and historical JSONL evidence. JSON array bytes and provider input tokens
+are reported separately.
+
+## Audit and technical judge repair
+
+The final auditor checks actor thread continuity, official instructions,
+request/response hashes, unchanged control requests, original patches and official
+scores. It independently reconstructs all CLM projections, preserving protected
+messages and complete tool-call batches. Failed-attempt edit and compaction events
+are counted separately from selected-trial events. Copied prefixes are deduplicated.
+
+`official-judge-quality.json` examines technical judge fields. A low semantic
+score remains a result. Empty final judge responses, image failures and unresolved
+technical fallbacks block final delivery. A stale retry-error field accompanied
+by a complete final JSON verdict is recorded as a recovered retry.
+
+`repair_workbuddy_judge.py` handles a narrowly identified single empty Web judge
+result. It first proves that the original official functions reproduce the
+original score. With `--execute`, it retries only the exact captured judge request,
+at most three times, and accepts either valid pass or fail. It uses the original
+official parser, report generator and scoring adapter, retaining all other
+verdicts and completion evidence. Actor calls are zero. Original patch, workspace,
+receipt and official source hashes must remain unchanged. The repair lives under
+`judge-repairs`; the final audit applies this separately hashed overlay without
+overwriting original results. Additional judge requests enter the all-attempt
+usage ledger.
+
+## Complete archive
+
+`snapshot_workbuddy_inputs.py` preserves the exact 65 selected formal tasks and
+four disjoint pilot tasks, including original staged task files, dataset.toml,
+shared verifier dependencies and original plans. Every source and copied file is
+independently hashed; task instruction and frozen runtime configuration hashes
+must match their plans. The snapshot does not modify the inputs used by a running
+controller. Its inventory distinguishes original Dockerfile hashes from staged
+mirror/cache adaptations, and records source paths for relocation.
+
+After the 65-pair audit and report are complete:
+
+```bash
+python3 package_workbuddy.py EXPERIMENT_ROOT AUDIT_DIRECTORY NEW_OUTPUT_DIRECTORY \
+  --scan-private-gpt-key
+```
+
+The production guard refuses an incomplete plan. The output must be outside the
+experiment root. All logical files and link metadata in the isolated root are
+included; source directory symlinks are not followed. Four-MiB SHA256 chunks
+deduplicate copied prefixes and repeated image layers, while `FILES.jsonl` retains
+every path, file recipe, mode, timestamp and original uid/gid. Special filesystem
+endpoints have metadata only. The archive checks every chunk CRC/SHA, every file
+recipe, audited hashes and byte accounting. A privately loaded GPT-key canary
+scan refuses publication if the credential occurs in file contents or link targets.
+
+The ZIP is split into 45-MiB Git-sized files under `archive/parts`, with a full
+archive SHA and per-part SHA in `archive/MANIFEST.json`. Its manifest is compatible
+with the repository's existing multipart joining utility. The payload itself uses
+the explicit `workbuddy-content-chunks-v1` format, so restore with both supplied
+Python scripts:
+
+```bash
+python3 restore_workbuddy.py join DELIVERY_DIRECTORY
+python3 restore_workbuddy.py verify DELIVERY_DIRECTORY/WORKBUDDY_CODEX_65_FULL.zip
+python3 restore_workbuddy.py extract \
+  DELIVERY_DIRECTORY/WORKBUDDY_CODEX_65_FULL.zip NEW_RESTORE_DIRECTORY
+```
+
+Restoration verifies parts, the archive and reconstructed file bytes. It never
+executes archived binaries or benchmark commands. Original uid/gid remain in the
+inventory; restored files belong to the current user. Basic permission bits and
+regular-file/directory timestamps are restored. Links are created only after
+regular files; special endpoints are recorded rather than recreated.
+
+`check_workbuddy_archive.py` exercises real wire-byte roundtripping, multipart
+integrity, Unicode/empty/executable/link metadata, tampering rejection,
+cross-chunk canary detection and incomplete-publication rejection.
+`check_workbuddy_postprocess.py` validates actual completed trials plus protected
+text mutation, failed-judge classification and copied-prefix deduplication.
+Both checks make zero model API calls. Running-stage checks are explicitly not
+the final 65-pair audit.
+
+Publish in a new dated directory under `Codex CLM` in
+`sheepyedu/Skil-RSI-Repository`, preserving earlier CL-Bench content. Verify the
+actual remote parts and manifest, then record the delivery and submit the Notion
+subtask review. The persistent Goal stays active until execution, audit, complete
+archive, report and required delivery work have finished.
