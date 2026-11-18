@@ -157,3 +157,17 @@ Publish in a new dated directory under `Codex CLM` in
 actual remote parts and manifest, then record the delivery and submit the Notion
 subtask review. The persistent Goal stays active until execution, audit, complete
 archive, report and required delivery work have finished.
+
+`prepare_workbuddy_publication.py EXPORT AUDIT SOURCE_SNAPSHOT FRAMEWORK_SNAPSHOT OUTPUT UPLOAD_PLAN`
+stages the actual publication without uploading or changing a branch. It rechecks
+all archive CRCs, chunk/file SHA values and the private GPT credential-scan receipt,
+requires the complete65/130 ordered binding and zero unresolved judge findings,
+and binds every visible report, source file and framework artifact to its original
+file digest inside the full archive. The unchanged ZIP is split into8MiB parts;
+the staged README, restore scripts and `INTEGRITY.json` provide independent access
+and file verification. `UPLOAD_PLAN` records expected Git blob IDs and SHA256 values
+outside the published directory for resumable uploads. The current remote parent
+commit and existing parent README must still be fetched before a leased branch
+update. `check_workbuddy_publication.py` uses explicit CPU fixtures and copied real
+wire bytes to verify roundtripping and refusal of changed reports, duplicate task
+bindings and unresolved grader failures; it does not constitute a full65 run.
