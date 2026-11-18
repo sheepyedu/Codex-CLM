@@ -71,13 +71,18 @@ def main(base, run, output):
         agent_log = root / "verifier/agent-judge/agent-fixture.json"
         agent_log.parent.mkdir()
         agent_log.write_text(json.dumps({"verdict": "pass", "agent_returncode": 0, "model": "gpt-6.1-sol"}))
+        agent_stream = agent_log.with_suffix(".stream.log")
+        agent_stream.write_text(json.dumps({"type": "result", "subtype": "success", "is_error": False}) + "\n")
         assert not judge_quality(root, {})["requires_review"]
         agent_log.write_text(json.dumps({"verdict": "fail", "agent_returncode": 0, "model": "gpt-6.1-sol"}))
         assert judge_quality(root, {})["requires_review"]
         agent_item["status"] = "fail"
         score.write_text(json.dumps(agent_item))
         assert not judge_quality(root, {})["requires_review"]
+        agent_stream.write_text(json.dumps({"type": "result", "subtype": "error_during_execution", "is_error": True}) + "\n")
+        assert judge_quality(root, {})["requires_review"]
         checks.append("reject missing, unsubmitted and inconsistent interactive verdicts despite stage exit zero")
+        checks.append("reject CBC error terminal masked by a successful tee pipeline")
     once, once_count = clm_edit_ledger([source.parent.parent.parent])
     twice, twice_count = clm_edit_ledger([source.parent.parent.parent] * 2)
     assert once == twice and once_count == twice_count

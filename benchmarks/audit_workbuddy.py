@@ -291,6 +291,21 @@ def clm_edit_ledger(roots):
     return sorted(events.values(), key=lambda x: x["time_ns"]), len(requests)
 
 
+def agent_cli_complete(path):
+    """The official tee pipeline can return zero after CBC itself has failed."""
+    if not path.is_file():
+        return False
+    terminal = None
+    try:
+        for line in path.open():
+            event = json.loads(line)
+            if isinstance(event, dict) and event.get("type") == "result":
+                terminal = event
+    except (ValueError, UnicodeError):
+        return False
+    return bool(terminal and terminal.get("subtype") == "success" and terminal.get("is_error") is False)
+
+
 def judge_quality(trial, result):
     """Record official technical metadata; a numeric reward alone does not validate a judge."""
     findings, recovered, models, seen = [], [], set(), set()
@@ -310,7 +325,8 @@ def judge_quality(trial, result):
                          and value.get("status") in ("pass", "fail")
                          and verdict.get("agent_returncode") == 0
                          and verdict.get("verdict") == value.get("status")
-                         and verdict.get("model") == meta.get("model") == "gpt-6.1-sol")
+                         and verdict.get("model") == meta.get("model") == "gpt-6.1-sol"
+                         and agent_cli_complete(verdict_path.with_suffix(".stream.log")))
                 if not valid and identity not in seen:
                     seen.add(identity)
                     findings.append({"location": location, "item_id": value["id"],

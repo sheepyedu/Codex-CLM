@@ -59,8 +59,9 @@ It does not modify the task images or the running actor controller.
 `repair_workbuddy_agent_judge.py` restores an already completed actor's exact
 patch on the frozen image, verifies every archived changed file, reproduces the
 original official score, and runs only the missing official agent rubric items.
-It keeps all other original verdicts and requires valid per-item verdict logs and
-actual submissions, not just an outer stage exit code. Its network is disabled;
+It keeps all other original verdicts and requires valid per-item verdict logs,
+actual submissions and CBC's successful terminal event. The official tee pipeline
+can return zero after CBC fails. Its network is disabled;
 GPT judge calls use the protected local bridge. Actor calls remain zero. The
 original results, all judge requests, tool traces, CBC sessions and repair
 implementation are retained. The auditor checks the resulting separate overlay.

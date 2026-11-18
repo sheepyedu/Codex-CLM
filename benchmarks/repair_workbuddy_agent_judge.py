@@ -16,7 +16,7 @@ import time
 from pathlib import Path
 from types import SimpleNamespace
 
-from audit_workbuddy import judge_quality, load, sha, trial_key
+from audit_workbuddy import agent_cli_complete, judge_quality, load, sha, trial_key
 from repair_workbuddy_judge import module, write
 from relay import Wire, MODEL
 from run import provider
@@ -116,7 +116,8 @@ def prepare(base, run, position, arm, output, seed=None):
             if (meta.get("judge") == "agent_judge" and meta.get("agent_returncode") == 0
                     and verdict.get("agent_returncode") == 0
                     and verdict.get("verdict") == value.get("status") in ("pass", "fail")
-                    and meta.get("model") == verdict.get("model") == MODEL):
+                    and meta.get("model") == verdict.get("model") == MODEL
+                    and agent_cli_complete(path.with_suffix(".stream.log"))):
                 reused.append(identifier)
                 seed_store[identifier] = value
                 files = [path, path.with_suffix(".stream.log")]
@@ -260,7 +261,8 @@ def execute(state):
                     if (verdict["verdict"] not in ("pass", "fail") or verdict["agent_returncode"] != 0
                             or submitted.get("status") != verdict["verdict"]
                             or (submitted.get("judge_meta") or {}).get("judge") != "agent_judge"
-                            or verdict["model"] != MODEL):
+                            or verdict["model"] != MODEL
+                            or not agent_cli_complete(output / "verifier/agent-judge" / (item_id + ".stream.log"))):
                         raise ValueError("Interactive item did not produce a valid submitted final verdict")
                 finalize(state, store)
             finally:
