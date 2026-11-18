@@ -91,7 +91,13 @@ def render(directory):
               "Harbor默认用sleep覆盖镜像CMD。追加DNS题显式调用官方启动脚本，保证模型开始前容器内服务可查询；检查点记录服务存活和查询状态。健康服务恢复时保留活动区文件，已停止服务保持停止。文件系统快照不包含进程内存，存活但不健康的DNS状态不会被自动重置后冒充原状态。初始化、健康恢复和停止状态恢复均以真实容器、零模型API验证。", "",
               "## 请求量与用量", "",
               f"全部已索引物理HTTP尝试共{usage['attempts']}次，已知用量{usage['usage_known']}次，未知{usage['usage_unknown']}次。已知输入{usage['known_input_tokens']}token、输出{usage['known_output_tokens']}token。该口径包括试跑、失败及容量辅助请求，按原始时间和响应摘要去重，复制旧目录不会重复计费。未知用量不补零；未提供可核实的实际货币账单。", "",
+              "下表按正式/试跑/辅助、两臂及作答与上下文请求/评审请求分列物理尝试；正式行包含失败恢复和评分补评。辅助或无法归属的请求保留独立行，不强行归入正式两臂。token列均为已报告用量的合计，未知用量可能造成低估。", "",
+              "| 范围 | 臂 | 用途 | HTTP尝试 | 用量已知/未知 | 已知输入token | 已知输出token |",
+              "| --- | --- | --- | ---: | ---: | ---: | ---: |",
+              *[f"| {r['scope']} | {r['arm']} | {r['purpose']} | {r['attempts']} | {r['usage_known']}/{r['usage_unknown']} | {r['known_input_tokens']} | {r['known_output_tokens']} |"
+                for r in usage["by_scope_arm_purpose"]], "",
               "正式有效任务的请求计数、已知token、缓存用量及墙钟见summary.json；每次物理尝试的证据路径、原始响应SHA和usage见all-provider-attempts.json。工程失败成本不混入正式reward分母。", "",
+              "逐题墙钟沿用选用原trial的起止时刻，独立补评和其他失败尝试的额外时间留在各物理请求/恢复时序中；它们不会被悄悄加回原trial时间。", "",
               "## 解释范围与证据", "",
               "本轮每臂只有一条持续学习链、每题一份选用结果，早期误差会影响后续历史。评分模型、环境和恢复也会引入差异。平均reward和配对差是本轮描述统计，不能据此单独归因为CLM机制或推广为模型整体优劣。API报告的模型ID未独立验证后端权重。", "",
               "paired.csv提供逐题reward，paired.json提供逐题上下文、工具及时间统计，summary.json提供分类汇总，sha256.jsonl索引全轨迹与旧失败。all-clm-edit-events.json按原始请求时间和SHA去重，包含失败尝试中已生效的编辑及被拒绝编辑；全部CLM请求均从原始input、完整工具批次和短记忆独立重建实际投影，保护文本与投影SHA逐字验证。完整归档及分卷SHA另见交付目录。", "",

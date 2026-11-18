@@ -67,10 +67,22 @@ def response_usage(path):
 
 def all_attempt_ledger(roots):
     """Deduplicate copied HTTP attempts by their original clock and response digest."""
-    entries = {}
+    entries, contexts = {}, {}
     for root in roots:
         for path in sorted(root.rglob("wire/*/receipt.json")):
             wire = load(path)
+            case = path.parent.parent.parent
+            if case not in contexts:
+                metadata = {}
+                for name in ("receipt.json", "PREPARED.json", "intent.json"):
+                    if (case / name).is_file():
+                        metadata = load(case / name)
+                        break
+                arm = metadata.get("arm") or next((a for a in ("native", "clm") if a in path.parts), None)
+                marker = metadata.get("marker") or (metadata.get("row") or {}).get("marker") or ""
+                scope = ("formal" if marker.startswith("WB_CODEX_FORMAL_") else
+                         "pilot" if marker.startswith("WB_CODEX_PILOT_") else "auxiliary_or_unclassified")
+                contexts[case] = {"arm": arm or "unassigned", "scope": scope, "marker": marker}
             attempts = wire.get("attempts") or [wire]
             for record in attempts:
                 raw = path.parent / "response.raw"
@@ -85,6 +97,8 @@ def all_attempt_ledger(roots):
                 if identity in entries:
                     continue
                 entries[identity] = {"evidence": str(raw), "started_ns": identity[0],
+                                     **contexts[case],
+                                     "purpose": "judge" if wire.get("path") == "/v1/chat/completions" else "actor_and_context",
                                      "route": wire.get("path"), "status": record.get("status"),
                                      "response_sha256": record.get("response_sha256"),
                                      "usage": response_usage(raw),
@@ -92,11 +106,22 @@ def all_attempt_ledger(roots):
                                      "transport_error": record.get("transport_error")}
     result = sorted(entries.values(), key=lambda x: x["started_ns"])
     known = [entry["usage"] for entry in result if entry["usage"] is not None]
+    grouped = defaultdict(list)
+    for entry in result:
+        grouped[(entry["scope"], entry["arm"], entry["purpose"])].append(entry)
+    groups = []
+    for (scope, arm, purpose), attempts in sorted(grouped.items()):
+        measured = [r["usage"] for r in attempts if r["usage"] is not None]
+        groups.append({"scope": scope, "arm": arm, "purpose": purpose, "attempts": len(attempts),
+                       "usage_known": len(measured), "usage_unknown": len(attempts) - len(measured),
+                       "known_input_tokens": sum(u["input_tokens"] for u in measured),
+                       "known_output_tokens": sum(u["output_tokens"] for u in measured)})
     return result, {"attempts": len(result), "usage_known": len(known),
                     "usage_unknown": len(result) - len(known),
                     "known_input_tokens": sum(x["input_tokens"] for x in known),
                     "known_output_tokens": sum(x["output_tokens"] for x in known),
-                    "scope": "Accepted, failed, pilot and capacity attempts; copied attempts counted once. Unknown usage is not zero cost."}
+                    "by_scope_arm_purpose": groups,
+                    "scope": "Accepted, failed, pilot, capacity and judge-repair attempts; copied attempts counted once. Unknown usage is not zero cost."}
 
 
 def compaction_ledger(roots):
