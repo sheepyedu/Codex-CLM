@@ -9,6 +9,7 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 from collections import Counter
 from pathlib import Path
 
@@ -20,10 +21,10 @@ def summarize(rows, field):
         for arm in ['native', 'clm']:
             selected = [r for r in rows if r['arm'] == arm and (domain == 'all' or r['domain'] == domain)]
             values = [r[field] for r in selected]
-            arms[arm] = {'n': len(values), 'mean': sum(values) / len(values),
+            arms[arm] = {'n': len(values), 'mean': round(math.fsum(values) / len(values), 12),
                          'full': sum(v == 1 for v in values), 'zero': sum(v == 0 for v in values),
                          'partial': sum(0 < v < 1 for v in values)}
-        arms['gap_clm_minus_native'] = arms['clm']['mean'] - arms['native']['mean']
+        arms['gap_clm_minus_native'] = round(arms['clm']['mean'] - arms['native']['mean'], 12)
         result[domain] = arms
     return result
 

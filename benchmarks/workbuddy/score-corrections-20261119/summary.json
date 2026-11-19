@@ -26,14 +26,14 @@
     "code": {
       "native": {
         "n": 20,
-        "mean": 0.8019550000000001,
+        "mean": 0.801955,
         "full": 7,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 20,
-        "mean": 0.7619100000000001,
+        "mean": 0.76191,
         "full": 8,
         "zero": 0,
         "partial": 12
@@ -50,77 +50,77 @@
       },
       "clm": {
         "n": 12,
-        "mean": 0.8089666666666666,
+        "mean": 0.808966666667,
         "full": 0,
         "zero": 0,
         "partial": 12
       },
-      "gap_clm_minus_native": -0.00773333333333337
+      "gap_clm_minus_native": -0.007733333333
     },
     "sec": {
       "native": {
         "n": 15,
-        "mean": 0.6140000000000001,
+        "mean": 0.614,
         "full": 2,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 15,
-        "mean": 0.6797933333333332,
+        "mean": 0.679793333333,
         "full": 1,
         "zero": 0,
         "partial": 14
       },
-      "gap_clm_minus_native": 0.06579333333333315
+      "gap_clm_minus_native": 0.065793333333
     },
     "web": {
       "native": {
         "n": 18,
-        "mean": 0.6722222222222222,
+        "mean": 0.672222222222,
         "full": 4,
         "zero": 1,
         "partial": 13
       },
       "clm": {
         "n": 18,
-        "mean": 0.5833333333333334,
+        "mean": 0.583333333333,
         "full": 5,
         "zero": 3,
         "partial": 10
       },
-      "gap_clm_minus_native": -0.0888888888888888
+      "gap_clm_minus_native": -0.088888888889
     },
     "all": {
       "native": {
         "n": 65,
-        "mean": 0.7253769230769231,
+        "mean": 0.725376923077,
         "full": 14,
         "zero": 1,
         "partial": 50
       },
       "clm": {
         "n": 65,
-        "mean": 0.7021953846153846,
+        "mean": 0.702195384615,
         "full": 14,
         "zero": 3,
         "partial": 48
       },
-      "gap_clm_minus_native": -0.023181538461538587
+      "gap_clm_minus_native": -0.023181538462
     }
   },
   "web_rule_only": {
     "code": {
       "native": {
         "n": 20,
-        "mean": 0.8019550000000001,
+        "mean": 0.801955,
         "full": 7,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 20,
-        "mean": 0.7619100000000001,
+        "mean": 0.76191,
         "full": 8,
         "zero": 0,
         "partial": 12
@@ -137,51 +137,51 @@
       },
       "clm": {
         "n": 12,
-        "mean": 0.8089666666666666,
+        "mean": 0.808966666667,
         "full": 0,
         "zero": 0,
         "partial": 12
       },
-      "gap_clm_minus_native": -0.00773333333333337
+      "gap_clm_minus_native": -0.007733333333
     },
     "sec": {
       "native": {
         "n": 15,
-        "mean": 0.6140000000000001,
+        "mean": 0.614,
         "full": 2,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 15,
-        "mean": 0.6797933333333332,
+        "mean": 0.679793333333,
         "full": 1,
         "zero": 0,
         "partial": 14
       },
-      "gap_clm_minus_native": 0.06579333333333315
+      "gap_clm_minus_native": 0.065793333333
     },
     "web": {
       "native": {
         "n": 18,
-        "mean": 0.7388888888888889,
+        "mean": 0.738888888889,
         "full": 5,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 18,
-        "mean": 0.6388888888888888,
+        "mean": 0.638888888889,
         "full": 5,
         "zero": 1,
         "partial": 12
       },
-      "gap_clm_minus_native": -0.10000000000000009
+      "gap_clm_minus_native": -0.1
     },
     "all": {
       "native": {
         "n": 65,
-        "mean": 0.7438384615384616,
+        "mean": 0.743838461538,
         "full": 15,
         "zero": 0,
         "partial": 50
@@ -193,21 +193,21 @@
         "zero": 1,
         "partial": 50
       },
-      "gap_clm_minus_native": -0.026258461538461564
+      "gap_clm_minus_native": -0.026258461538
     }
   },
   "corrected": {
     "code": {
       "native": {
         "n": 20,
-        "mean": 0.8019550000000001,
+        "mean": 0.801955,
         "full": 7,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 20,
-        "mean": 0.7619100000000001,
+        "mean": 0.76191,
         "full": 8,
         "zero": 0,
         "partial": 12
@@ -217,70 +217,70 @@
     "office": {
       "native": {
         "n": 12,
-        "mean": 0.7659529913975471,
+        "mean": 0.765952991398,
         "full": 1,
         "zero": 0,
         "partial": 11
       },
       "clm": {
         "n": 12,
-        "mean": 0.8035134886784224,
+        "mean": 0.803513488678,
         "full": 0,
         "zero": 0,
         "partial": 12
       },
-      "gap_clm_minus_native": 0.037560497280875293
+      "gap_clm_minus_native": 0.03756049728
     },
     "sec": {
       "native": {
         "n": 15,
-        "mean": 0.6140000000000001,
+        "mean": 0.614,
         "full": 2,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 15,
-        "mean": 0.6797933333333332,
+        "mean": 0.679793333333,
         "full": 1,
         "zero": 0,
         "partial": 14
       },
-      "gap_clm_minus_native": 0.06579333333333315
+      "gap_clm_minus_native": 0.065793333333
     },
     "web": {
       "native": {
         "n": 18,
-        "mean": 0.7388888888888889,
+        "mean": 0.738888888889,
         "full": 5,
         "zero": 0,
         "partial": 13
       },
       "clm": {
         "n": 18,
-        "mean": 0.6388888888888888,
+        "mean": 0.638888888889,
         "full": 5,
         "zero": 1,
         "partial": 12
       },
-      "gap_clm_minus_native": -0.10000000000000009
+      "gap_clm_minus_native": -0.1
     },
     "all": {
       "native": {
         "n": 65,
-        "mean": 0.7344697830272395,
+        "mean": 0.734469783027,
         "full": 15,
         "zero": 0,
         "partial": 50
       },
       "clm": {
         "n": 65,
-        "mean": 0.7165732594483242,
+        "mean": 0.716573259448,
         "full": 14,
         "zero": 1,
         "partial": 50
       },
-      "gap_clm_minus_native": -0.017896523578915358
+      "gap_clm_minus_native": -0.017896523579
     }
   },
   "pending": [
