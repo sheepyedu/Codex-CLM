@@ -1,0 +1,292 @@
+{
+  "protocol": "confirmed-corrections-v2-20261119",
+  "input_sha256": "9d2d97507f301c22682dea529ceb05c10038a5b95459d250ff5ca192942fc2c3",
+  "source_sha256": {
+    "SCORE_INVENTORY_130.json": "df360bdd8b2777f9ec2e90e5d1962512c885ad9b85b461b28c61415be428c509",
+    "original-paired.json": "7b952e1e3fb74ded1abc3eb3971fe01b0e0502be1fc70d007cdbbaa7ea2d3ffc",
+    "ORIGINAL_OFFICE054_REEVALUATION.json": "f5e337a8cc793314941b639a582b1329a17ad2c1c16aaf68ae4d5201957db3eb",
+    "OFFICE049_INPUT_PACKAGE.json": "570106ecc6dd10e2be7c22e633ccda43c709c4176a77b56ccaea5b49eeb27413",
+    "BROWSER_RESULTS.json": "1a71b760355ce3b78cd8a71a810ec4f20254b8558605c4920e3e6f6e6438d10f",
+    "BROWSER_CHART_RESULTS.json": "19f3dd0010bb6f4f5e64a920b6162383c9f625237e79878d1307e3891e931fa6",
+    "BROWSER_EXTRA_RESULTS.json": "cd2d35cd4c118efdcdf756d88f34d79e74e1fd155a2f65cc1b83a37b875b0768",
+    "RULE_REPRODUCTIONS.json": "3e41bb8612b8b46a9255ff8c9fe038ef731a60280bcd19da1e3a3b46a5fc7e35"
+  },
+  "model_calls_added": 0,
+  "official_scores_overwritten": false,
+  "complete_fair_regrade": false,
+  "corrected_score_records": 11,
+  "affected_tasks": 7,
+  "changed_score_tasks": 6,
+  "clm_paired_outcomes": {
+    "loss": 19,
+    "tie": 26,
+    "win": 20
+  },
+  "original": {
+    "code": {
+      "native": {
+        "n": 20,
+        "mean": 0.8019550000000001,
+        "full": 7,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 20,
+        "mean": 0.7619100000000001,
+        "full": 8,
+        "zero": 0,
+        "partial": 12
+      },
+      "gap_clm_minus_native": -0.040045
+    },
+    "office": {
+      "native": {
+        "n": 12,
+        "mean": 0.8167,
+        "full": 1,
+        "zero": 0,
+        "partial": 11
+      },
+      "clm": {
+        "n": 12,
+        "mean": 0.8089666666666666,
+        "full": 0,
+        "zero": 0,
+        "partial": 12
+      },
+      "gap_clm_minus_native": -0.00773333333333337
+    },
+    "sec": {
+      "native": {
+        "n": 15,
+        "mean": 0.6140000000000001,
+        "full": 2,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 15,
+        "mean": 0.6797933333333332,
+        "full": 1,
+        "zero": 0,
+        "partial": 14
+      },
+      "gap_clm_minus_native": 0.06579333333333315
+    },
+    "web": {
+      "native": {
+        "n": 18,
+        "mean": 0.6722222222222222,
+        "full": 4,
+        "zero": 1,
+        "partial": 13
+      },
+      "clm": {
+        "n": 18,
+        "mean": 0.5833333333333334,
+        "full": 5,
+        "zero": 3,
+        "partial": 10
+      },
+      "gap_clm_minus_native": -0.0888888888888888
+    },
+    "all": {
+      "native": {
+        "n": 65,
+        "mean": 0.7253769230769231,
+        "full": 14,
+        "zero": 1,
+        "partial": 50
+      },
+      "clm": {
+        "n": 65,
+        "mean": 0.7021953846153846,
+        "full": 14,
+        "zero": 3,
+        "partial": 48
+      },
+      "gap_clm_minus_native": -0.023181538461538587
+    }
+  },
+  "web_rule_only": {
+    "code": {
+      "native": {
+        "n": 20,
+        "mean": 0.8019550000000001,
+        "full": 7,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 20,
+        "mean": 0.7619100000000001,
+        "full": 8,
+        "zero": 0,
+        "partial": 12
+      },
+      "gap_clm_minus_native": -0.040045
+    },
+    "office": {
+      "native": {
+        "n": 12,
+        "mean": 0.8167,
+        "full": 1,
+        "zero": 0,
+        "partial": 11
+      },
+      "clm": {
+        "n": 12,
+        "mean": 0.8089666666666666,
+        "full": 0,
+        "zero": 0,
+        "partial": 12
+      },
+      "gap_clm_minus_native": -0.00773333333333337
+    },
+    "sec": {
+      "native": {
+        "n": 15,
+        "mean": 0.6140000000000001,
+        "full": 2,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 15,
+        "mean": 0.6797933333333332,
+        "full": 1,
+        "zero": 0,
+        "partial": 14
+      },
+      "gap_clm_minus_native": 0.06579333333333315
+    },
+    "web": {
+      "native": {
+        "n": 18,
+        "mean": 0.7388888888888889,
+        "full": 5,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 18,
+        "mean": 0.6388888888888888,
+        "full": 5,
+        "zero": 1,
+        "partial": 12
+      },
+      "gap_clm_minus_native": -0.10000000000000009
+    },
+    "all": {
+      "native": {
+        "n": 65,
+        "mean": 0.7438384615384616,
+        "full": 15,
+        "zero": 0,
+        "partial": 50
+      },
+      "clm": {
+        "n": 65,
+        "mean": 0.71758,
+        "full": 14,
+        "zero": 1,
+        "partial": 50
+      },
+      "gap_clm_minus_native": -0.026258461538461564
+    }
+  },
+  "corrected": {
+    "code": {
+      "native": {
+        "n": 20,
+        "mean": 0.8019550000000001,
+        "full": 7,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 20,
+        "mean": 0.7619100000000001,
+        "full": 8,
+        "zero": 0,
+        "partial": 12
+      },
+      "gap_clm_minus_native": -0.040045
+    },
+    "office": {
+      "native": {
+        "n": 12,
+        "mean": 0.7659529913975471,
+        "full": 1,
+        "zero": 0,
+        "partial": 11
+      },
+      "clm": {
+        "n": 12,
+        "mean": 0.8035134886784224,
+        "full": 0,
+        "zero": 0,
+        "partial": 12
+      },
+      "gap_clm_minus_native": 0.037560497280875293
+    },
+    "sec": {
+      "native": {
+        "n": 15,
+        "mean": 0.6140000000000001,
+        "full": 2,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 15,
+        "mean": 0.6797933333333332,
+        "full": 1,
+        "zero": 0,
+        "partial": 14
+      },
+      "gap_clm_minus_native": 0.06579333333333315
+    },
+    "web": {
+      "native": {
+        "n": 18,
+        "mean": 0.7388888888888889,
+        "full": 5,
+        "zero": 0,
+        "partial": 13
+      },
+      "clm": {
+        "n": 18,
+        "mean": 0.6388888888888888,
+        "full": 5,
+        "zero": 1,
+        "partial": 12
+      },
+      "gap_clm_minus_native": -0.10000000000000009
+    },
+    "all": {
+      "native": {
+        "n": 65,
+        "mean": 0.7344697830272395,
+        "full": 15,
+        "zero": 0,
+        "partial": 50
+      },
+      "clm": {
+        "n": 65,
+        "mean": 0.7165732594483242,
+        "full": 14,
+        "zero": 1,
+        "partial": 50
+      },
+      "gap_clm_minus_native": -0.017896523578915358
+    }
+  },
+  "pending": [
+    "Office20/31 also have output-dependent denominators; canonical universes not yet verified.",
+    "Missing-view LLM judgments have not been rerun; no automatic pass assigned.",
+    "Code6 API contract ambiguity and Web42 breadcrumb overconstraint are disclosed, not adjusted.",
+    "New no-pre-task-compaction policy has not been benchmarked; this is the old guarded run."
+  ]
+}

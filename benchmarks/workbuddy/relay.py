@@ -15,8 +15,6 @@ from clm.context import Context, digest, encode, is_message, write_json
 MODEL = "gpt-6.1-sol"
 LOCAL_TOKEN = "workbuddy-codex-local"
 MAX_BODY = 64 * 1024 * 1024
-COMPACT_BYTES = 3 * 1024 * 1024
-COMPACT_TOKENS = 165_000
 RETRYABLE_HTTP = {408, 429, 500, 502, 503, 504}
 RETRYABLE_CODES = {"server_error", "internal_server_error", "rate_limit_exceeded", "overloaded_error"}
 

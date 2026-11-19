@@ -78,6 +78,7 @@ def render(directory):
                         ("raw_input_bytes_peak", "最大原始CLI输入字节"),
                         ("sent_input_bytes_peak", "最大发送输入字节")):
         lines.append(f"| {label} | {overall['native'][name]} | {overall['clm'][name]} |")
+    lines += ["", "冻结计划context_policy：" + plan.get("context_policy", "legacy-pressure-guard (historical)")]
     compactions = load(directory / "formal-native-compactions.json")
     for protective, label in ((False, "全部正式尝试中的自动压缩事件"), (True, "全部正式尝试中的保护性压缩事件")):
         counts = {arm: sum(event["arm"] == arm and event["protective"] == protective for event in compactions)
@@ -86,7 +87,7 @@ def render(directory):
     edits = load(directory / "formal-clm-edit-events.json")
     lines.append(f"| 全部正式尝试中已接受CLM编辑 | 0 | {sum(e['edit'] == 'accepted' for e in edits)} |")
     lines.append(f"| 全部正式尝试中被拒绝CLM编辑 | 0 | {sum(e['edit'] != 'accepted' for e in edits)} |")
-    lines += ["", "CLM常规编辑改变API请求的投影，包括完整旧工具交换的删除与短记忆注入。它本身不删除CLI原生历史。CLM上一题原始输入达到3MiB或实际输入达到165000token时，下题前调用原生thread/compact/start，实际改变CLI活跃历史并保留thread；原生臂沿用Codex自身自动压缩。短记忆、持久笔记与原生压缩分别留证。", "",
+    lines += ["", "CLM常规编辑改变API请求的投影，包括完整旧工具交换的删除与短记忆注入。它本身不删除CLI原生历史。历史65题采用上一题3MiB/165000token题间主动保护，原生thread/compact/start会改变CLI活跃历史并保留thread；2026-11-19源码已去除该保护，新计划通过context_policy标识，不追溯改变旧实验。原生臂沿用Codex自身自动压缩。短记忆、持久笔记与原生压缩分别留证。", "",
               "## 传输、评分及恢复", "",
               "四类配对试跑先通过8/8，之后正式派发。正式运行的恢复版本升级保留原pilot资格，源码差异与零模型API的定向回归单列。所有HTTP尝试、失败流、原生会话、工具回执、工作区恢复和评分保留。", "",
               "当前作答与上下文Responses网关（transport-v2及以后）最多三次相同请求，仅交付完整成功流。评分Chat Completions保留原始流，技术失败由独立评分审计拦截并定向补评。早期source-07曾把包含response.failed的HTTP200流交给CLI，原失败完整保留；不能把当前终态保护追溯为早期也已具备。第5题CLM的该失败只有用户/assistant消息通知，没有工具执行；新版本随后沿原thread继续。任务退出后，已执行状态由检查点恢复；每个控制器对当前题最多四次尝试。控制器终止后，经修复和资格核验的新版本可以从原检查点继续，因此四次并非跨版本总次数上限，所有物理尝试另按trial目录及原始ID去重统计。原失败不删除。第6题首次故障发生于检查点机制加入前，核对十个完整调用后仅用原版Codex引擎恢复唯一三文件补丁，并核对最后工具观察；续接使用原thread。额外续接turn和请求属于工程恢复，不能当作纯首次成功轨迹。", "",

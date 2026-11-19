@@ -132,7 +132,7 @@ MERMAID = '''flowchart TB
     EDIT[edit.json\nrevision + drop IDs + note]
     PROJ[API输入投影 P_t\n删除旧完整工具批次；P3追加短记忆]
     P3[P3：CLM memory written by the assistant + 动态note]
-    G[CLM题间容量保护\n上一题raw ≥ 3 MiB 或实际input ≥ 165000 tokens]
+    G[CLM自行提交投影编辑\n已去除题间165000 token / 3MiB保护]
   end
   W[容器127.0.0.1:19731 → Unix socket → 宿主网关\nBase原字节透传；CLM采用P_t\n最多3次同请求，仅交付完整成功响应]
   GPT[GPT-6.1-sol Responses API\n模型报告ID；后端权重未独立验证]
@@ -155,7 +155,8 @@ MERMAID = '''flowchart TB
   P3 --> PROJ
   ACTIVE -->|原始input| PROJ -->|CLM分支| W
   TOOLS <--> N
-  W -.前题用量.-> G --> COMPACT -->|实际替换活跃历史| ACTIVE
+  G -.无主动compact RPC.-> CT
+  COMPACT -->|实际替换活跃历史| ACTIVE
   ACTIVE -.原生自动策略.-> COMPACT
   W --> R
   S --> CP --> RES --> CLI
@@ -199,7 +200,7 @@ def draw(output):
         "projection": (16.5, 5.9, "revision与输入投影\n旧完整工具批次可删除\nP3记忆；P4状态/工具输出", "added"),
         "session": (5.3, 3.3, "原生会话JSONL / HOME\n两臂各自独立\n旧证据继续留档", "native"),
         "compact": (9.1, 3.3, "原生context compaction\n自动策略 / 原生RPC\n真正改变CLI活跃历史", "native"),
-        "guard": (12.9, 3.3, "CLM题间容量保护\n前题raw ≥ 3 MiB\n或实际input ≥ 165000 token", "added"),
+        "guard": (12.9, 3.3, "CLM自行管理投影\n无题间主动compact RPC\n前题用量仅留作审计", "added"),
         "notes": (16.5, 3.3, "每臂独立notes目录\n两臂均可用原生工具读写\n不自动注入笔记全文", "added"),
         "judge": (1.6, 1.0, "官方评分契约\nCompositeVerifier / Security\nWeb官方多模态评分", "official"),
         "output": (5.3, 1.0, "官方指定输出路径\n任务工作区 / artifacts\n两臂采用相同题面", "official"),
@@ -231,15 +232,12 @@ def draw(output):
     arrow((10.7,5.9),(11.3,5.9))
     arrow((14.5,5.9),(14.9,5.9))
     arrow((15.0,6.7),(14.3,7.7),"CLM输入",offset=(.4,0))
-    arrow((11.3,3.3),(10.7,3.3))
     arrow((7.5,3.3),(6.9,3.3))
     arrow((5.3,4.1),(5.3,7.7),"同一thread续接",dashed=True)
     ax.plot([10.65,10.95,10.95], [3.3,4.1,7.4], color="#51616f", linewidth=1.3, zorder=2)
     arrow((10.95,7.4),(10.55,7.75))
     ax.text(10.95,6.0,"原生状态更新",rotation=90,ha="center",va="center",fontsize=8.2,fontproperties=font,
             bbox={"facecolor":"white","edgecolor":"none","pad":1},zorder=5)
-    arrow((14.6,7.7),(14.6,4.1),"前题用量",dashed=True,offset=(.12,0))
-    arrow((14.6,4.1),(14.4,3.7),dashed=True)
     ax.plot([7.55,7.15,7.15], [5.35,4.65,1.85], color="#51616f",linewidth=1.3,zorder=2)
     arrow((7.15,1.85),(6.85,1.1))
     ax.text(7.15,2.3,"产物",ha="center",fontsize=8.2,fontproperties=font,zorder=5,
@@ -283,7 +281,7 @@ def main(source, run_root, output):
              "![框架概览](framework-overview.png)", "", "## 详细框架图", "", "```mermaid", mermaid.rstrip(), "```", "",
              "## 两种上下文必须分开", "",
              "CLI活跃上下文H_t由官方Codex维护；常规CLM操作在宿主网关构造API投影P_t。删除投影中的旧工具交换并不等于删除CLI自己的活跃历史。原生自动压缩或thread/compact/start完成后，CLI才会采用新的活跃历史；完整会话JSONL仍保留旧内容供审计。", "",
-             "CLM上一题raw输入数组达到3MiB或实际API输入达到165000token时，下题前调用原生压缩。阈值使用逐请求input数组字节及报告用量，不使用会话JSONL文件大小。原生臂保持CLI自身压缩策略。两臂使用相同官方二进制、模型ID和low推理强度。", "",
+             "当前版本已移除上一题3MiB/165000token题间主动压缩。两臂均保留CLI自身自动策略，CLM由模型管理API投影；手动容量探针仍可显式请求原生压缩。下方实际证据来自旧65题实验，旧策略与旧事件保留，不能视为新策略已完成验证。两臂使用相同官方二进制、模型ID和low推理强度。", "",
              "本轮这个provider的实际原生自动压缩通过/v1/responses发送原生摘要任务。网关兼容/v1/responses/compact不代表该路由已经被实际采用。", "",
              "## 所有新增提示词", "",
              "原生Codex本身的系统提示、原生工具定义及原生压缩摘要模板由原版CLI产生。新增文本如下；源码位置和SHA保存在PROMPTS.json。", ""]

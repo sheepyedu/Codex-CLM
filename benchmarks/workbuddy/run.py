@@ -18,7 +18,7 @@ from harbor.models.trial.config import AgentConfig, EnvironmentConfig, TaskConfi
 from harbor.trial.hooks import TrialEvent
 from harbor.trial.trial import Trial
 
-from relay import COMPACT_BYTES, COMPACT_TOKENS, MODEL, SeriesContext, Wire, stream_outcome
+from relay import MODEL, SeriesContext, Wire, stream_outcome
 from checkpoint import capture_failed_task
 from clm.context import write_json
 
@@ -93,7 +93,7 @@ def plan(stage, target):
         "runtime_sha256": runtime_sha(), "model": MODEL, "source_totals": SOURCE_TOTALS,
         "chosen_totals": COUNTS[stage], "tasks": images_by_task,
         "security_scope": "Previously vetted offline defensive tasks only",
-        "code_sha256": code_sha(),
+        "code_sha256": code_sha(), "context_policy": "no-pre-task-compaction-v1",
     })
 
 
@@ -233,6 +233,16 @@ def save_thread(home, thread, private):
     return sha(target)
 
 
+def task_options(previous, row, arm, task):
+    """Continue the same native thread without pressure-based compact RPCs.
+
+    Previous raw bytes and token usage remain audit data. Codex's own automatic
+    compaction is unchanged; explicit compaction is reserved for manual probes.
+    """
+    return {"thread": previous.get("thread"), "marker": row["marker"], "arm": arm,
+            "instruction": str(task / "instruction.md"), "compact": False}
+
+
 async def one_trial(root, frozen, row, arm, previous, key, base_url, context, recovery=None, attempt=1):
     ordinal = row["position"]
     task = task_dir(Path(frozen["reference"]), row)
@@ -257,11 +267,7 @@ async def one_trial(root, frozen, row, arm, previous, key, base_url, context, re
         context.directory.mkdir(mode=0o700, exist_ok=True)
     web = row["domain"] == "web"
     old = previous or {}
-    pressure = old.get("wire", {})
-    compact = bool(context and (pressure.get("final_raw_input_bytes", 0) >= COMPACT_BYTES
-                                or pressure.get("last_input_tokens", 0) >= COMPACT_TOKENS))
-    options = {"thread": old.get("thread"), "marker": row["marker"], "arm": arm,
-               "instruction": str(task / "instruction.md"), "compact": compact}
+    options = task_options(old, row, arm, task)
     if row["domain"] == "sec" and row["task"] == "bb-bin-dns-parse-010":
         options["init_named"] = True
     checkpoint_image = None
@@ -371,7 +377,8 @@ async def one_trial(root, frozen, row, arm, previous, key, base_url, context, re
     receipt = {"row": row, "arm": arm, "trial_name": trial_name, "thread": native.get("thread"),
                "marker": row["marker"], "native": native,
                "session_sha256": session_hash, "wire": wire, "exception": result.get("exception_info"),
-               "reward": (result.get("verifier_result") or {}).get("rewards")}
+               "reward": (result.get("verifier_result") or {}).get("rewards"),
+               "context_policy": "no-pre-task-compaction-v1"}
     if recovery:
         receipt["recovery"] = recovery
     state_proof = logs / "restored-state.json"
@@ -379,7 +386,7 @@ async def one_trial(root, frozen, row, arm, previous, key, base_url, context, re
         receipt["restored_state"] = read(state_proof)
     receipt["accepted"] = bool(
         native.get("turn") and native.get("native_exit") == 0 and session_hash and native.get("resumed") == bool(old)
-        and (not old or old["thread"] == native["thread"]) and (not compact or native.get("protective_compaction"))
+        and (not old or old["thread"] == native["thread"])
         and wire["responses_with_exact_task"] and wire["tool_outputs"] and not wire["missing_tool_host_outputs"]
         and (not web or wire["successful_judge_calls"])
         and result.get("exception_info") is None and receipt["reward"]

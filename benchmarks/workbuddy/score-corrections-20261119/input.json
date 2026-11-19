@@ -1,0 +1,3510 @@
+{
+  "protocol": "confirmed-corrections-v2-20261119",
+  "scope": "Frozen65; offline confirmed corrections only; remaining semantic and denominator concerns unresolved; no actor/API rerun.",
+  "source_sha256": {
+    "SCORE_INVENTORY_130.json": "df360bdd8b2777f9ec2e90e5d1962512c885ad9b85b461b28c61415be428c509",
+    "original-paired.json": "7b952e1e3fb74ded1abc3eb3971fe01b0e0502be1fc70d007cdbbaa7ea2d3ffc",
+    "ORIGINAL_OFFICE054_REEVALUATION.json": "f5e337a8cc793314941b639a582b1329a17ad2c1c16aaf68ae4d5201957db3eb",
+    "OFFICE049_INPUT_PACKAGE.json": "570106ecc6dd10e2be7c22e633ccda43c709c4176a77b56ccaea5b49eeb27413",
+    "BROWSER_RESULTS.json": "1a71b760355ce3b78cd8a71a810ec4f20254b8558605c4920e3e6f6e6438d10f",
+    "BROWSER_CHART_RESULTS.json": "19f3dd0010bb6f4f5e64a920b6162383c9f625237e79878d1307e3891e931fa6",
+    "BROWSER_EXTRA_RESULTS.json": "cd2d35cd4c118efdcdf756d88f34d79e74e1fd155a2f65cc1b83a37b875b0768",
+    "RULE_REPRODUCTIONS.json": "3e41bb8612b8b46a9255ff8c9fe038ef731a60280bcd19da1e3a3b46a5fc7e35"
+  },
+  "rows": [
+    {
+      "position": 1,
+      "arm": "native",
+      "domain": "sec",
+      "task": "linux-ld-preload-investigation",
+      "reward": 0.8254,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 1,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "linux-ld-preload-investigation",
+      "reward": 0.8179,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 2,
+      "arm": "native",
+      "domain": "web",
+      "task": "dense-saas-visual-refactor-L3-046",
+      "reward": 0.0,
+      "tests_passed": 13,
+      "tests_total": 17,
+      "correct_rule_ids": [
+        "alert_rows_with_severity_owner_time"
+      ],
+      "items": [
+        {
+          "id": "information_preserved",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "kpi_alert_business_blocks_present",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "scanable_grouping",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "table_and_list_legibility",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "status_priority_visible",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "token_aligned",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "dense_not_marketing",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "responsive_no_overflow",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "mobile_scannable_sections",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "transaction_table_with_doc_ids_and_owner",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "alert_rows_with_severity_owner_time",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "eight_sections_with_stable_ids",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "section_priority_order_matches_spec",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "sticky_inpage_nav_with_scrollspy",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "collapse_controls_present_per_section",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "hash_collapse_state_persistence",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "text_contrast_floor_4_5",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "arm": "clm",
+      "domain": "web",
+      "task": "dense-saas-visual-refactor-L3-046",
+      "reward": 0.0,
+      "tests_passed": 13,
+      "tests_total": 17,
+      "correct_rule_ids": [
+        "alert_rows_with_severity_owner_time"
+      ],
+      "items": [
+        {
+          "id": "information_preserved",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "kpi_alert_business_blocks_present",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "scanable_grouping",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "table_and_list_legibility",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "status_priority_visible",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "token_aligned",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "dense_not_marketing",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "responsive_no_overflow",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "mobile_scannable_sections",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "transaction_table_with_doc_ids_and_owner",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "alert_rows_with_severity_owner_time",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "eight_sections_with_stable_ids",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "section_priority_order_matches_spec",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "sticky_inpage_nav_with_scrollspy",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "collapse_controls_present_per_section",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "hash_collapse_state_persistence",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "text_contrast_floor_4_5",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "arm": "native",
+      "domain": "web",
+      "task": "security-privacy-permission-review-L4-020",
+      "reward": 0.7,
+      "tests_passed": 15,
+      "tests_total": 16,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "permission_risks_identified",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "storage_flow_reviewed",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "consent_copy_consistency",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "blockers_explicitly_designated",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "cross_host_scope_leak_identified",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "pointer_color_css_injection_surface_identified",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "per_permission_walkthrough_complete",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "minimum_permission_set_proposed",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "data_at_rest_sensitivity_tiers_assigned",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "consent_copy_verbatim_cited",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "three_blockers_distinct_root_causes",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "permission_walkthrough_reconciles_manifest_calls_and_minimum_set",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "data_flow_and_consent_quotes_expose_sync_scope_gap",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "remote_transmission_boundary_and_sync_scope_counterevidence",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "blocker_remediation_retest_matrix",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "store_review_release_gate_decision_is_actionable",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "arm": "clm",
+      "domain": "web",
+      "task": "security-privacy-permission-review-L4-020",
+      "reward": 0.7,
+      "tests_passed": 15,
+      "tests_total": 16,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "permission_risks_identified",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "storage_flow_reviewed",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "consent_copy_consistency",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "blockers_explicitly_designated",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "cross_host_scope_leak_identified",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "pointer_color_css_injection_surface_identified",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "per_permission_walkthrough_complete",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "minimum_permission_set_proposed",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "data_at_rest_sensitivity_tiers_assigned",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "consent_copy_verbatim_cited",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "three_blockers_distinct_root_causes",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "permission_walkthrough_reconciles_manifest_calls_and_minimum_set",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "data_flow_and_consent_quotes_expose_sync_scope_gap",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "remote_transmission_boundary_and_sync_scope_counterevidence",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "blocker_remediation_retest_matrix",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "store_review_release_gate_decision_is_actionable",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "arm": "native",
+      "domain": "code",
+      "task": "refactor-medium-config_validation_errors",
+      "reward": 0.7333,
+      "tests_passed": 11,
+      "tests_total": 15,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 4,
+      "arm": "clm",
+      "domain": "code",
+      "task": "refactor-medium-config_validation_errors",
+      "reward": 0.7333,
+      "tests_passed": 11,
+      "tests_total": 15,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 5,
+      "arm": "native",
+      "domain": "web",
+      "task": "markdown-release-editor-L4-038",
+      "reward": 0.6,
+      "tests_passed": 9,
+      "tests_total": 11,
+      "correct_rule_ids": [
+        "owner_regex_supports_fullwidth_colon"
+      ],
+      "items": [
+        {
+          "id": "template_insert_works",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "required_section_warnings",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "preview_updates",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "export_markdown_and_summary",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "summary_missing_sections_contract",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "risk_level_derivation",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "scenario_matrix_supported",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "draft_persistence_reload",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "editor_visual_quality",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "template_insert_merges_existing",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "owner_regex_supports_fullwidth_colon",
+          "status": "fail",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 5,
+      "arm": "clm",
+      "domain": "web",
+      "task": "markdown-release-editor-L4-038",
+      "reward": 1.0,
+      "tests_passed": 11,
+      "tests_total": 11,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "template_insert_works",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "required_section_warnings",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "preview_updates",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "export_markdown_and_summary",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "summary_missing_sections_contract",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "risk_level_derivation",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "scenario_matrix_supported",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "draft_persistence_reload",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "editor_visual_quality",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "template_insert_merges_existing",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "owner_regex_supports_fullwidth_colon",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 6,
+      "arm": "native",
+      "domain": "code",
+      "task": "feature-medium-envless_file_load",
+      "reward": 0.25,
+      "tests_passed": 1,
+      "tests_total": 4,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 6,
+      "arm": "clm",
+      "domain": "code",
+      "task": "feature-medium-envless_file_load",
+      "reward": 0.25,
+      "tests_passed": 1,
+      "tests_total": 4,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 7,
+      "arm": "native",
+      "domain": "code",
+      "task": "reliability-hard-stream_release",
+      "reward": 0.75,
+      "tests_passed": 9,
+      "tests_total": 12,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 7,
+      "arm": "clm",
+      "domain": "code",
+      "task": "reliability-hard-stream_release",
+      "reward": 1.0,
+      "tests_passed": 12,
+      "tests_total": 12,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 8,
+      "arm": "native",
+      "domain": "office",
+      "task": "warranty-recovery-allocation-L5-033",
+      "reward": 0.8638,
+      "tests_passed": 298,
+      "tests_total": 345,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 8,
+      "arm": "clm",
+      "domain": "office",
+      "task": "warranty-recovery-allocation-L5-033",
+      "reward": 0.8348,
+      "tests_passed": 288,
+      "tests_total": 345,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 9,
+      "arm": "native",
+      "domain": "code",
+      "task": "schema_behavior-medium-datakey_errors",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 9,
+      "arm": "clm",
+      "domain": "code",
+      "task": "schema_behavior-medium-datakey_errors",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 10,
+      "arm": "native",
+      "domain": "web",
+      "task": "root-cause-localization-L3-015",
+      "reward": 0.7,
+      "tests_passed": 13,
+      "tests_total": 14,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "reproduction_evidence_used",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "paint_trace_root_cause",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_recommendation_grounded",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "no_direct_patch_shortcut",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "observation_log_citation_density",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "paint_trace_sequence_citations",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_location_class_method",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "minimum_repro_snippet_present",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "measurable_retest_criterion",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "alternative_hypotheses_eliminated_with_trace_evidence",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "run_to_run_pattern_links_symptom_to_paint_order",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "retest_plan_replays_before_after_failure_sequence",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "positive_negative_control_transition_explained",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "state_transition_and_paint_boundary_separated",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 10,
+      "arm": "clm",
+      "domain": "web",
+      "task": "root-cause-localization-L3-015",
+      "reward": 0.7,
+      "tests_passed": 13,
+      "tests_total": 14,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "reproduction_evidence_used",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "paint_trace_root_cause",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_recommendation_grounded",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "no_direct_patch_shortcut",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "observation_log_citation_density",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "paint_trace_sequence_citations",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_location_class_method",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "minimum_repro_snippet_present",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "measurable_retest_criterion",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "alternative_hypotheses_eliminated_with_trace_evidence",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "run_to_run_pattern_links_symptom_to_paint_order",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "retest_plan_replays_before_after_failure_sequence",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "positive_negative_control_transition_explained",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "state_transition_and_paint_boundary_separated",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 11,
+      "arm": "native",
+      "domain": "code",
+      "task": "reliability-medium-pool_release",
+      "reward": 0.7692,
+      "tests_passed": 10,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 11,
+      "arm": "clm",
+      "domain": "code",
+      "task": "reliability-medium-pool_release",
+      "reward": 0.7692,
+      "tests_passed": 10,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 12,
+      "arm": "native",
+      "domain": "web",
+      "task": "root-cause-localization-L3-013",
+      "reward": 0.5,
+      "tests_passed": 9,
+      "tests_total": 11,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "root_cause_identified",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "payload_log_evidence_chain",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "unsupported_claims_avoided",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_direction_actionable",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "evidence_timeline_ids_cited",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "alternative_hypotheses_ruled_out",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "save_payload_to_dispatch_gap_traced_end_to_end",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "hypothesis_exclusions_are_specific_and_evidence_bound",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_boundary_preserves_save_contract_and_normalizes_dispatch_mode",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_validation_path_covers_save_compile_dispatch",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_does_not_shift_failure_to_incompatible_clients",
+          "status": "fail",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 12,
+      "arm": "clm",
+      "domain": "web",
+      "task": "root-cause-localization-L3-013",
+      "reward": 0.5,
+      "tests_passed": 9,
+      "tests_total": 11,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "root_cause_identified",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "payload_log_evidence_chain",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "unsupported_claims_avoided",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_direction_actionable",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "evidence_timeline_ids_cited",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "alternative_hypotheses_ruled_out",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "save_payload_to_dispatch_gap_traced_end_to_end",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "hypothesis_exclusions_are_specific_and_evidence_bound",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_boundary_preserves_save_contract_and_normalizes_dispatch_mode",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_validation_path_covers_save_compile_dispatch",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "fix_does_not_shift_failure_to_incompatible_clients",
+          "status": "fail",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 13,
+      "arm": "native",
+      "domain": "code",
+      "task": "bug_fix-medium-matching_absolute_paths",
+      "reward": 1.0,
+      "tests_passed": 4,
+      "tests_total": 4,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 13,
+      "arm": "clm",
+      "domain": "code",
+      "task": "bug_fix-medium-matching_absolute_paths",
+      "reward": 1.0,
+      "tests_passed": 4,
+      "tests_total": 4,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 14,
+      "arm": "native",
+      "domain": "sec",
+      "task": "yara-detect-cryptominer",
+      "reward": 1.0,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 14,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "yara-detect-cryptominer",
+      "reward": 0.83,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 15,
+      "arm": "native",
+      "domain": "office",
+      "task": "wechat-tech-topic-package-hardened",
+      "reward": 0.8652,
+      "tests_passed": 77,
+      "tests_total": 89,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 15,
+      "arm": "clm",
+      "domain": "office",
+      "task": "wechat-tech-topic-package-hardened",
+      "reward": 0.8652,
+      "tests_passed": 77,
+      "tests_total": 89,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 16,
+      "arm": "native",
+      "domain": "sec",
+      "task": "false-positive-trap-bind-hard-multistep",
+      "reward": 0.5,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 16,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "false-positive-trap-bind-hard-multistep",
+      "reward": 0.5,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 17,
+      "arm": "native",
+      "domain": "code",
+      "task": "api_contract-hard-openapi_params",
+      "reward": 0.6667,
+      "tests_passed": 8,
+      "tests_total": 12,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 17,
+      "arm": "clm",
+      "domain": "code",
+      "task": "api_contract-hard-openapi_params",
+      "reward": 0.5833,
+      "tests_passed": 7,
+      "tests_total": 12,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 18,
+      "arm": "native",
+      "domain": "sec",
+      "task": "apt-multi-source-correlation-hard-multistep",
+      "reward": 0.75,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 18,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "apt-multi-source-correlation-hard-multistep",
+      "reward": 0.75,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 19,
+      "arm": "native",
+      "domain": "code",
+      "task": "feature-medium-validation_to_eliminate_uriref",
+      "reward": 0.9778,
+      "tests_passed": 44,
+      "tests_total": 45,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 19,
+      "arm": "clm",
+      "domain": "code",
+      "task": "feature-medium-validation_to_eliminate_uriref",
+      "reward": 1.0,
+      "tests_passed": 45,
+      "tests_total": 45,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 20,
+      "arm": "native",
+      "domain": "office",
+      "task": "rank-ic-topn-L4-001",
+      "reward": 0.8062,
+      "tests_passed": 491,
+      "tests_total": 609,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 20,
+      "arm": "clm",
+      "domain": "office",
+      "task": "rank-ic-topn-L4-001",
+      "reward": 0.7899,
+      "tests_passed": 485,
+      "tests_total": 614,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 21,
+      "arm": "native",
+      "domain": "code",
+      "task": "data_reporting-medium-customer_health_export",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 21,
+      "arm": "clm",
+      "domain": "code",
+      "task": "data_reporting-medium-customer_health_export",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 22,
+      "arm": "native",
+      "domain": "office",
+      "task": "drug-inventory-split-L2-006",
+      "reward": 1.0,
+      "tests_passed": 15,
+      "tests_total": 15,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 22,
+      "arm": "clm",
+      "domain": "office",
+      "task": "drug-inventory-split-L2-006",
+      "reward": 0.8667,
+      "tests_passed": 13,
+      "tests_total": 15,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 23,
+      "arm": "native",
+      "domain": "code",
+      "task": "python_port-medium-header_dimensions",
+      "reward": 0.6842,
+      "tests_passed": 13,
+      "tests_total": 19,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 23,
+      "arm": "clm",
+      "domain": "code",
+      "task": "python_port-medium-header_dimensions",
+      "reward": 1.0,
+      "tests_passed": 19,
+      "tests_total": 19,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 24,
+      "arm": "native",
+      "domain": "sec",
+      "task": "windows-dll-proxy-investigation",
+      "reward": 0.7271,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 24,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "windows-dll-proxy-investigation",
+      "reward": 0.7114,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 25,
+      "arm": "native",
+      "domain": "web",
+      "task": "workflow-backoffice-L4-002",
+      "reward": 1.0,
+      "tests_passed": 7,
+      "tests_total": 7,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "filter_controls_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "url_state_round_trip",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "pagination_filter_reset",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "selection_scope_safety",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "batch_action_guard",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "table_visual_density_proper",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "state_transition_replay_preserves_url_rows_and_selection_rules",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 25,
+      "arm": "clm",
+      "domain": "web",
+      "task": "workflow-backoffice-L4-002",
+      "reward": 0.7,
+      "tests_passed": 6,
+      "tests_total": 7,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "filter_controls_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "url_state_round_trip",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "pagination_filter_reset",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "selection_scope_safety",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "batch_action_guard",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "table_visual_density_proper",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "state_transition_replay_preserves_url_rows_and_selection_rules",
+          "status": "fail",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 26,
+      "arm": "native",
+      "domain": "sec",
+      "task": "windows-dll-proxy-rule-gen",
+      "reward": 0.18,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 26,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "windows-dll-proxy-rule-gen",
+      "reward": 0.6437,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 27,
+      "arm": "native",
+      "domain": "code",
+      "task": "data_quality-hard-label_conflicts",
+      "reward": 0.7692,
+      "tests_passed": 10,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 27,
+      "arm": "clm",
+      "domain": "code",
+      "task": "data_quality-hard-label_conflicts",
+      "reward": 0.6923,
+      "tests_passed": 9,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 28,
+      "arm": "native",
+      "domain": "code",
+      "task": "feature-hard-fallback_signers_and_switch",
+      "reward": 0.6,
+      "tests_passed": 3,
+      "tests_total": 5,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 28,
+      "arm": "clm",
+      "domain": "code",
+      "task": "feature-hard-fallback_signers_and_switch",
+      "reward": 0.4,
+      "tests_passed": 2,
+      "tests_total": 5,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 29,
+      "arm": "native",
+      "domain": "code",
+      "task": "feature-medium-etag_header_for_static",
+      "reward": 0.2727,
+      "tests_passed": 3,
+      "tests_total": 11,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 29,
+      "arm": "clm",
+      "domain": "code",
+      "task": "feature-medium-etag_header_for_static",
+      "reward": 0.2727,
+      "tests_passed": 3,
+      "tests_total": 11,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 30,
+      "arm": "native",
+      "domain": "web",
+      "task": "review-card-queue-persistence-L4-063",
+      "reward": 0.8,
+      "tests_passed": 12,
+      "tests_total": 13,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t63_completion_02_the_app_must_load_the_synthe",
+          "status": "pass",
+          "penalty": 1.0
+        },
+        {
+          "id": "t63_completion_03_the_app_must_persist_review",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_completion_04_the_app_must_support_share_s",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_06_confirm_the_default_due_queu",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_08_confirm_card_card_104_is_the",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "t63_task_functionality_11_reload_and_confirm_filter_so",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_12_seed_conflicting_localstorag",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_13_complete_every_due_card_in_t",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t63_data_and_interaction_17_rating_card_104_as_good_writ",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_data_and_interaction_18_url_query_params_can_restore",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_data_and_interaction_19_url_filters_and_current_card",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_data_and_interaction_20_card_ids_are_used_for_state",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t63_visual_responsive_24_mobile_390x844_card_content",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 30,
+      "arm": "clm",
+      "domain": "web",
+      "task": "review-card-queue-persistence-L4-063",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t63_completion_02_the_app_must_load_the_synthe",
+          "status": "pass",
+          "penalty": 1.0
+        },
+        {
+          "id": "t63_completion_03_the_app_must_persist_review",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_completion_04_the_app_must_support_share_s",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_06_confirm_the_default_due_queu",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_08_confirm_card_card_104_is_the",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t63_task_functionality_11_reload_and_confirm_filter_so",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_12_seed_conflicting_localstorag",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_task_functionality_13_complete_every_due_card_in_t",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t63_data_and_interaction_17_rating_card_104_as_good_writ",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_data_and_interaction_18_url_query_params_can_restore",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_data_and_interaction_19_url_filters_and_current_card",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t63_data_and_interaction_20_card_ids_are_used_for_state",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t63_visual_responsive_24_mobile_390x844_card_content",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 31,
+      "arm": "native",
+      "domain": "office",
+      "task": "rule-based-stock-exclusion-L4-011",
+      "reward": 0.9026,
+      "tests_passed": 825,
+      "tests_total": 914,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 31,
+      "arm": "clm",
+      "domain": "office",
+      "task": "rule-based-stock-exclusion-L4-011",
+      "reward": 0.9179,
+      "tests_passed": 838,
+      "tests_total": 913,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 32,
+      "arm": "native",
+      "domain": "office",
+      "task": "procurement-reconcile-L3-015",
+      "reward": 0.7619,
+      "tests_passed": 16,
+      "tests_total": 21,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 32,
+      "arm": "clm",
+      "domain": "office",
+      "task": "procurement-reconcile-L3-015",
+      "reward": 0.7619,
+      "tests_passed": 16,
+      "tests_total": 21,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 33,
+      "arm": "native",
+      "domain": "sec",
+      "task": "windows-dll-sideload-investigation",
+      "reward": 0.788,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 33,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "windows-dll-sideload-investigation",
+      "reward": 0.784,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 34,
+      "arm": "native",
+      "domain": "code",
+      "task": "testing-medium-format_errors",
+      "reward": 0.9286,
+      "tests_passed": 13,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 34,
+      "arm": "clm",
+      "domain": "code",
+      "task": "testing-medium-format_errors",
+      "reward": 0.9286,
+      "tests_passed": 13,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 35,
+      "arm": "native",
+      "domain": "web",
+      "task": "release-readiness-review-L4-019",
+      "reward": 0.5,
+      "tests_passed": 15,
+      "tests_total": 17,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "mobile_blockers_detected",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "keyboard_a11y_detected",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "semantic_cta_findings",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "regression_risks_assessed",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "severity_supported",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "actionable_fix_steps_provided",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "verification_methodology_present",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "wcag_criteria_cited",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "dom_anchor_per_finding",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "severity_threshold_quantified",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "motion_or_reduced_motion_finding",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "imperative_recommendations",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "findings_reproducible_from_snapshot_dom_and_css",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "retest_plan_maps_each_blocker_to_tool_and_expected_fix",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "release_decision_ties_findings_to_ship_risk_and_retest_order",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "audit_prioritizes_blockers_with_counterevidence_handled",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "remediation_snippets_match_cited_selectors_and_side_effects",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 35,
+      "arm": "clm",
+      "domain": "web",
+      "task": "release-readiness-review-L4-019",
+      "reward": 0.5,
+      "tests_passed": 15,
+      "tests_total": 17,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "mobile_blockers_detected",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "keyboard_a11y_detected",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "semantic_cta_findings",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "regression_risks_assessed",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "severity_supported",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "actionable_fix_steps_provided",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "verification_methodology_present",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "wcag_criteria_cited",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "dom_anchor_per_finding",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "severity_threshold_quantified",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "motion_or_reduced_motion_finding",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "imperative_recommendations",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "findings_reproducible_from_snapshot_dom_and_css",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "retest_plan_maps_each_blocker_to_tool_and_expected_fix",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "release_decision_ties_findings_to_ship_risk_and_retest_order",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "audit_prioritizes_blockers_with_counterevidence_handled",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "remediation_snippets_match_cited_selectors_and_side_effects",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 36,
+      "arm": "native",
+      "domain": "code",
+      "task": "python_port-medium-blog_tags",
+      "reward": 1.0,
+      "tests_passed": 20,
+      "tests_total": 20,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 36,
+      "arm": "clm",
+      "domain": "code",
+      "task": "python_port-medium-blog_tags",
+      "reward": 0.65,
+      "tests_passed": 13,
+      "tests_total": 20,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 37,
+      "arm": "native",
+      "domain": "sec",
+      "task": "ntfs-ads-extractor",
+      "reward": 1.0,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 37,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "ntfs-ads-extractor",
+      "reward": 1.0,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 38,
+      "arm": "native",
+      "domain": "web",
+      "task": "firmware-card-interaction-tests-L3-074",
+      "reward": 0.8,
+      "tests_passed": 11,
+      "tests_total": 12,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t74_task_functionality_06_inspect_tests_for_meaningful",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_task_functionality_07_compare_behavior_coverage_to",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_12_s18_tabs_baseline_and_tab_mu",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_13_s18_disclosure_baseline_and",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_14_s18_tooltip_baseline_and_too",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_15_s18_sort_baseline_and_sort_m",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_16_s18_clipboard_baseline_and_c",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_17_s18_empty_state_empty_fixtur",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_25_fixture_isolation_route_switching",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_26_keyboard_tab_navigation_assertions",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_27_clipboard_failure_fallback",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_28_filter_sort_stability_after_tab_switch",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 38,
+      "arm": "clm",
+      "domain": "web",
+      "task": "firmware-card-interaction-tests-L3-074",
+      "reward": 0.3,
+      "tests_passed": 9,
+      "tests_total": 12,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t74_task_functionality_06_inspect_tests_for_meaningful",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_task_functionality_07_compare_behavior_coverage_to",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_12_s18_tabs_baseline_and_tab_mu",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_13_s18_disclosure_baseline_and",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_14_s18_tooltip_baseline_and_too",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_15_s18_sort_baseline_and_sort_m",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_16_s18_clipboard_baseline_and_c",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_17_s18_empty_state_empty_fixtur",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_25_fixture_isolation_route_switching",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "t74_data_and_interaction_26_keyboard_tab_navigation_assertions",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_27_clipboard_failure_fallback",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "t74_data_and_interaction_28_filter_sort_stability_after_tab_switch",
+          "status": "fail",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 39,
+      "arm": "native",
+      "domain": "web",
+      "task": "file-manager-workflow-L3-044",
+      "reward": 0.5,
+      "tests_passed": 7,
+      "tests_total": 9,
+      "correct_rule_ids": [
+        "native_checkbox_per_row"
+      ],
+      "items": [
+        {
+          "id": "file_tree_render",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "search_filters_files",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "selection_count",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "rename_permission",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "detail_panel",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "responsive_file_manager",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "file_manager_visual_integrity",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "data_loaded_from_attachment",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "native_checkbox_per_row",
+          "status": "fail",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 39,
+      "arm": "clm",
+      "domain": "web",
+      "task": "file-manager-workflow-L3-044",
+      "reward": 0.0,
+      "tests_passed": 5,
+      "tests_total": 9,
+      "correct_rule_ids": [
+        "native_checkbox_per_row"
+      ],
+      "items": [
+        {
+          "id": "file_tree_render",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "search_filters_files",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "selection_count",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "rename_permission",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "detail_panel",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "responsive_file_manager",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "file_manager_visual_integrity",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "data_loaded_from_attachment",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "native_checkbox_per_row",
+          "status": "fail",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 40,
+      "arm": "native",
+      "domain": "web",
+      "task": "miniprogram-source-structure-L2-041",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "cart_includes_delivery_and_payable",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "cart_state_persisted_via_wx_storage",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "stock_limit_and_unavailable_state",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "cart_recompute_after_clear_or_quantity_change",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "product_catalog_fields_used_in_ui",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "delivery_group_fee_and_free_threshold_logic",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "cross_page_cart_restore_consistency",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "limit_per_order_and_stock_boundary_state_machine",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "shared_cart_logic_single_source",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "restored_cart_clamped_to_catalog_limits",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "money_formatting_avoids_float_artifacts",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "mixed_delivery_group_pickup_summary",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "disabled_reason_copy_for_sold_out_and_limit_caps",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 40,
+      "arm": "clm",
+      "domain": "web",
+      "task": "miniprogram-source-structure-L2-041",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "cart_includes_delivery_and_payable",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "cart_state_persisted_via_wx_storage",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "stock_limit_and_unavailable_state",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "cart_recompute_after_clear_or_quantity_change",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "product_catalog_fields_used_in_ui",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "delivery_group_fee_and_free_threshold_logic",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "cross_page_cart_restore_consistency",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "limit_per_order_and_stock_boundary_state_machine",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "shared_cart_logic_single_source",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "restored_cart_clamped_to_catalog_limits",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "money_formatting_avoids_float_artifacts",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "mixed_delivery_group_pickup_summary",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "disabled_reason_copy_for_sold_out_and_limit_caps",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 41,
+      "arm": "native",
+      "domain": "office",
+      "task": "health-quote-L2-003",
+      "reward": 0.8571,
+      "tests_passed": 18,
+      "tests_total": 21,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 41,
+      "arm": "clm",
+      "domain": "office",
+      "task": "health-quote-L2-003",
+      "reward": 0.8571,
+      "tests_passed": 18,
+      "tests_total": 21,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 42,
+      "arm": "native",
+      "domain": "web",
+      "task": "ui-state-rebuild-L3-007",
+      "reward": 1.0,
+      "tests_passed": 12,
+      "tests_total": 12,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "runtime_error_resolved",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "target_text_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "repair_dom_match",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "no_new_console_crash",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "content_type_filter_toolbar_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "route_breadcrumb_hierarchy",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "explicit_error_code_handling",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "initial_page_state_byte_match",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "replay_regression_states_match",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "debug_state_companion_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "error_toast_auto_dismiss_5000ms",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "page_state_exposed_via_global",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 42,
+      "arm": "clm",
+      "domain": "web",
+      "task": "ui-state-rebuild-L3-007",
+      "reward": 0.0,
+      "tests_passed": 7,
+      "tests_total": 12,
+      "correct_rule_ids": [
+        "page_state_exposed_via_global"
+      ],
+      "items": [
+        {
+          "id": "runtime_error_resolved",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "target_text_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "repair_dom_match",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "no_new_console_crash",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "content_type_filter_toolbar_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "route_breadcrumb_hierarchy",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "explicit_error_code_handling",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "initial_page_state_byte_match",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "replay_regression_states_match",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "debug_state_companion_present",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "error_toast_auto_dismiss_5000ms",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "page_state_exposed_via_global",
+          "status": "fail",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 43,
+      "arm": "native",
+      "domain": "web",
+      "task": "misleading-chart-repair-L3-055",
+      "reward": 0.4,
+      "tests_passed": 6,
+      "tests_total": 8,
+      "correct_rule_ids": [
+        "embedded_aggregate_metadata_complete",
+        "runtime_self_validates_aggregation"
+      ],
+      "items": [
+        {
+          "id": "axis_not_misleading",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "aggregation_correct",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "labels_units_clear",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "repair_note",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "embedded_aggregate_metadata_complete",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "runtime_self_validates_aggregation",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "chart_has_accessible_text_alternative",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "page_declares_unit_and_data_source",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 43,
+      "arm": "clm",
+      "domain": "web",
+      "task": "misleading-chart-repair-L3-055",
+      "reward": 0.1,
+      "tests_passed": 5,
+      "tests_total": 8,
+      "correct_rule_ids": [
+        "embedded_aggregate_metadata_complete",
+        "runtime_self_validates_aggregation"
+      ],
+      "items": [
+        {
+          "id": "axis_not_misleading",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "aggregation_correct",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "labels_units_clear",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "repair_note",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "embedded_aggregate_metadata_complete",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "runtime_self_validates_aggregation",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "chart_has_accessible_text_alternative",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "page_declares_unit_and_data_source",
+          "status": "fail",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 44,
+      "arm": "native",
+      "domain": "office",
+      "task": "effective-control-state-L5-036",
+      "reward": 0.5115,
+      "tests_passed": 335,
+      "tests_total": 655,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 44,
+      "arm": "clm",
+      "domain": "office",
+      "task": "effective-control-state-L5-036",
+      "reward": 0.5176,
+      "tests_passed": 339,
+      "tests_total": 655,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 45,
+      "arm": "native",
+      "domain": "code",
+      "task": "feature-medium-humanize_metric_for_converting",
+      "reward": 0.9231,
+      "tests_passed": 12,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 45,
+      "arm": "clm",
+      "domain": "code",
+      "task": "feature-medium-humanize_metric_for_converting",
+      "reward": 0.9231,
+      "tests_passed": 12,
+      "tests_total": 13,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 46,
+      "arm": "native",
+      "domain": "sec",
+      "task": "yara-rust-loader-family",
+      "reward": 0.6175,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 46,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "yara-rust-loader-family",
+      "reward": 0.745,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 47,
+      "arm": "native",
+      "domain": "code",
+      "task": "model_evaluation-hard-threshold_slices",
+      "reward": 1.0,
+      "tests_passed": 14,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 47,
+      "arm": "clm",
+      "domain": "code",
+      "task": "model_evaluation-hard-threshold_slices",
+      "reward": 1.0,
+      "tests_passed": 14,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 48,
+      "arm": "native",
+      "domain": "sec",
+      "task": "windows-dll-sideload-rule-gen",
+      "reward": 0.863,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 48,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "windows-dll-sideload-rule-gen",
+      "reward": 0.8639,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 49,
+      "arm": "native",
+      "domain": "office",
+      "task": "recruiting-search-skill-mock-mcp-hardened",
+      "reward": 0.5672,
+      "tests_passed": 76,
+      "tests_total": 134,
+      "correct_rule_ids": [],
+      "exclude_environment_checks": 5
+    },
+    {
+      "position": 49,
+      "arm": "clm",
+      "domain": "office",
+      "task": "recruiting-search-skill-mock-mcp-hardened",
+      "reward": 0.5896,
+      "tests_passed": 79,
+      "tests_total": 134,
+      "correct_rule_ids": [],
+      "exclude_environment_checks": 5
+    },
+    {
+      "position": 50,
+      "arm": "native",
+      "domain": "code",
+      "task": "tool_behavior-easy-diagnostics_and_observability",
+      "reward": 1.0,
+      "tests_passed": 4,
+      "tests_total": 4,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 50,
+      "arm": "clm",
+      "domain": "code",
+      "task": "tool_behavior-easy-diagnostics_and_observability",
+      "reward": 0.25,
+      "tests_passed": 1,
+      "tests_total": 4,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 51,
+      "arm": "native",
+      "domain": "web",
+      "task": "cohort-retention-dashboard-L4-054",
+      "reward": 0.7,
+      "tests_passed": 6,
+      "tests_total": 7,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "chart_renderable",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "heatmap_matrix",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "data_values_correct",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "segment_filter",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "trend_summary",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "legend_tooltip_responsive",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "heatmap_visual_encoding",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 51,
+      "arm": "clm",
+      "domain": "web",
+      "task": "cohort-retention-dashboard-L4-054",
+      "reward": 1.0,
+      "tests_passed": 7,
+      "tests_total": 7,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "chart_renderable",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "heatmap_matrix",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "data_values_correct",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "segment_filter",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "trend_summary",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "legend_tooltip_responsive",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "heatmap_visual_encoding",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 52,
+      "arm": "native",
+      "domain": "web",
+      "task": "blog-editor-draft-recovery-L4-059",
+      "reward": 0.5,
+      "tests_passed": 9,
+      "tests_total": 11,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t59_completion_03_it_must_use_localstorage_key",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_06_confirm_editor_fields_restor",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_08_edit_title_body_tags_and_wai",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_09_reload_and_confirm_the_lates",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_10_use_the_clear_draft_button_r",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_data_and_interaction_13_localstorage_cb_blog_editor",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_data_and_interaction_15_the_restored_preview_text_eq",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_data_and_interaction_16_the_autosave_delay_is_near_t",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_data_and_interaction_17_clear_draft_removes_the_draf",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_visual_responsive_20_desktop_1440x900_after_clear",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_visual_responsive_21_mobile_390x844_editor_articl",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 52,
+      "arm": "clm",
+      "domain": "web",
+      "task": "blog-editor-draft-recovery-L4-059",
+      "reward": 0.5,
+      "tests_passed": 9,
+      "tests_total": 11,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t59_completion_03_it_must_use_localstorage_key",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_06_confirm_editor_fields_restor",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_08_edit_title_body_tags_and_wai",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_09_reload_and_confirm_the_lates",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_task_functionality_10_use_the_clear_draft_button_r",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t59_data_and_interaction_13_localstorage_cb_blog_editor",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_data_and_interaction_15_the_restored_preview_text_eq",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_data_and_interaction_16_the_autosave_delay_is_near_t",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_data_and_interaction_17_clear_draft_removes_the_draf",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_visual_responsive_20_desktop_1440x900_after_clear",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "t59_visual_responsive_21_mobile_390x844_editor_articl",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 53,
+      "arm": "native",
+      "domain": "web",
+      "task": "kanban-drag-state-L3-042",
+      "reward": 0.7,
+      "tests_passed": 8,
+      "tests_total": 9,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "columns_and_cards_render",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "move_card_supported",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "wip_limit_enforced",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "state_persistence",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "observable_state_summary",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "kanban_visual_integrity",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "export_state_action_present",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "wip_warning_uses_aria_live",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "column_visual_separation",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 53,
+      "arm": "clm",
+      "domain": "web",
+      "task": "kanban-drag-state-L3-042",
+      "reward": 0.7,
+      "tests_passed": 8,
+      "tests_total": 9,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "columns_and_cards_render",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "move_card_supported",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "wip_limit_enforced",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "state_persistence",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "observable_state_summary",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "kanban_visual_integrity",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "export_state_action_present",
+          "status": "fail",
+          "penalty": 0.3
+        },
+        {
+          "id": "wip_warning_uses_aria_live",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "column_visual_separation",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 54,
+      "arm": "native",
+      "domain": "office",
+      "task": "crypto-backtest-chain-L4-002",
+      "reward": 0.7304,
+      "tests_passed": 214,
+      "tests_total": 293,
+      "correct_rule_ids": [],
+      "canonical_total": 2151
+    },
+    {
+      "position": 54,
+      "arm": "clm",
+      "domain": "office",
+      "task": "crypto-backtest-chain-L4-002",
+      "reward": 0.7219,
+      "tests_passed": 1363,
+      "tests_total": 1888,
+      "correct_rule_ids": [],
+      "canonical_total": 2151
+    },
+    {
+      "position": 55,
+      "arm": "native",
+      "domain": "office",
+      "task": "research-factor-table-extract-L3-016",
+      "reward": 0.9382,
+      "tests_passed": 243,
+      "tests_total": 259,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 55,
+      "arm": "clm",
+      "domain": "office",
+      "task": "research-factor-table-extract-L3-016",
+      "reward": 0.9923,
+      "tests_passed": 257,
+      "tests_total": 259,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 56,
+      "arm": "native",
+      "domain": "web",
+      "task": "svg-chart-diagram-refactor-L4-024",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "stacked_bar_type",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "quarter_totals_labeled",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "error_bars_removed",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "data_values_from_source",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "legend_integrated",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "chart_layout_readability",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "legend_below_chart_area",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "stacked_geometry_matches_csv_totals_and_segments",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "legend_and_annotations_remain_readable_on_mobile",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "chart_source_change_resilience_not_static_svg",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "mobile_fallback_preserves_same_source_totals_not_separate_copy",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "quarter_total_labels_recomputed_from_visible_segments",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "source_edit_brief_constraints_preserved_in_markup",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 56,
+      "arm": "clm",
+      "domain": "web",
+      "task": "svg-chart-diagram-refactor-L4-024",
+      "reward": 1.0,
+      "tests_passed": 13,
+      "tests_total": 13,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "stacked_bar_type",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "quarter_totals_labeled",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "error_bars_removed",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "data_values_from_source",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "legend_integrated",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "chart_layout_readability",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "legend_below_chart_area",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "stacked_geometry_matches_csv_totals_and_segments",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "legend_and_annotations_remain_readable_on_mobile",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "chart_source_change_resilience_not_static_svg",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "mobile_fallback_preserves_same_source_totals_not_separate_copy",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "quarter_total_labels_recomputed_from_visible_segments",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "source_edit_brief_constraints_preserved_in_markup",
+          "status": "pass",
+          "penalty": 0.2
+        }
+      ]
+    },
+    {
+      "position": 57,
+      "arm": "native",
+      "domain": "code",
+      "task": "feature_pipeline-hard-text_hashing",
+      "reward": 1.0,
+      "tests_passed": 14,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 57,
+      "arm": "clm",
+      "domain": "code",
+      "task": "feature_pipeline-hard-text_hashing",
+      "reward": 1.0,
+      "tests_passed": 14,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 58,
+      "arm": "native",
+      "domain": "web",
+      "task": "research-homepage-visual-repair-L3-064",
+      "reward": 0.7,
+      "tests_passed": 9,
+      "tests_total": 10,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t64_completion_02_the_page_must_preserve_every",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t64_completion_03_the_target_should_repair_the",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_task_functionality_08_check_computed_styles_agains",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_task_functionality_09_inspect_the_first_viewport_a",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_task_functionality_10_inspect_at_390x844_and_confi",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t64_data_and_interaction_11_dom_contains_semantic_landma",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_data_and_interaction_12_normalized_text_includes_the",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t64_data_and_interaction_13_the_target_removes_or_substa",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_data_and_interaction_14_h1_is_readable_on_mobile_and",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_data_and_interaction_15_body_has_no_horizontal_scrol",
+          "status": "fail",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 58,
+      "arm": "clm",
+      "domain": "web",
+      "task": "research-homepage-visual-repair-L3-064",
+      "reward": 0.8,
+      "tests_passed": 9,
+      "tests_total": 10,
+      "correct_rule_ids": [],
+      "items": [
+        {
+          "id": "t64_completion_02_the_page_must_preserve_every",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t64_completion_03_the_target_should_repair_the",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_task_functionality_08_check_computed_styles_agains",
+          "status": "fail",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_task_functionality_09_inspect_the_first_viewport_a",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_task_functionality_10_inspect_at_390x844_and_confi",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t64_data_and_interaction_11_dom_contains_semantic_landma",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_data_and_interaction_12_normalized_text_includes_the",
+          "status": "pass",
+          "penalty": 0.3
+        },
+        {
+          "id": "t64_data_and_interaction_13_the_target_removes_or_substa",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_data_and_interaction_14_h1_is_readable_on_mobile_and",
+          "status": "pass",
+          "penalty": 0.2
+        },
+        {
+          "id": "t64_data_and_interaction_15_body_has_no_horizontal_scrol",
+          "status": "pass",
+          "penalty": 0.3
+        }
+      ]
+    },
+    {
+      "position": 59,
+      "arm": "native",
+      "domain": "code",
+      "task": "api_contract-hard-validation_errors",
+      "reward": 0.7143,
+      "tests_passed": 10,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 59,
+      "arm": "clm",
+      "domain": "code",
+      "task": "api_contract-hard-validation_errors",
+      "reward": 0.7857,
+      "tests_passed": 11,
+      "tests_total": 14,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 60,
+      "arm": "native",
+      "domain": "office",
+      "task": "service-channel-ticket-daily",
+      "reward": 0.9963,
+      "tests_passed": 272,
+      "tests_total": 273,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 60,
+      "arm": "clm",
+      "domain": "office",
+      "task": "service-channel-ticket-daily",
+      "reward": 0.9927,
+      "tests_passed": 271,
+      "tests_total": 273,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 61,
+      "arm": "native",
+      "domain": "sec",
+      "task": "bb-bin-int-length-005",
+      "reward": 0.2495,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 61,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "bb-bin-int-length-005",
+      "reward": 0.2375,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 62,
+      "arm": "native",
+      "domain": "sec",
+      "task": "bb-bin-media-parse-008",
+      "reward": 0.6875,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 62,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "bb-bin-media-parse-008",
+      "reward": 0.7695,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 63,
+      "arm": "native",
+      "domain": "sec",
+      "task": "bb-bin-parse-crash-006",
+      "reward": 0.3195,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 63,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "bb-bin-parse-crash-006",
+      "reward": 0.3695,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 64,
+      "arm": "native",
+      "domain": "sec",
+      "task": "bb-bin-pdf-parse-009",
+      "reward": 0.398,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 64,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "bb-bin-pdf-parse-009",
+      "reward": 0.52,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 65,
+      "arm": "native",
+      "domain": "sec",
+      "task": "bb-bin-dns-parse-010",
+      "reward": 0.3045,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    },
+    {
+      "position": 65,
+      "arm": "clm",
+      "domain": "sec",
+      "task": "bb-bin-dns-parse-010",
+      "reward": 0.6545,
+      "tests_passed": null,
+      "tests_total": null,
+      "correct_rule_ids": []
+    }
+  ]
+}

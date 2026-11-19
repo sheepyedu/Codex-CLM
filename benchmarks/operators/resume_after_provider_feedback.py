@@ -45,8 +45,9 @@ def validate(old,target,request):
     assert saved['row']==receipt['row'] and saved['thread']==receipt['thread']=='01a1ef4f-5341-76e3-88d4-2bfc9655ff96'
     assert run.sha(failed/'checkpoint/receipt.json')=='516af30c690b106b524b6b7cea3dadc1257df9ee3fb3872453e6b87364a7e50f'
     assert receipt['native']['protective_compaction']['saw_compaction']
+    # Historical v6 qualification only; these are NOT current dispatch limits.
     pressure=receipt['wire']
-    assert pressure['final_raw_input_bytes']<run.COMPACT_BYTES and pressure['last_input_tokens']<run.COMPACT_TOKENS
+    assert pressure['final_raw_input_bytes'] < 3 * 1024 * 1024 and pressure['last_input_tokens'] < 165_000
     for a in run.ARMS:
         last=next(r for r in reversed(progress) if r['arm']==a)
         home=old/a/'home/codex/sessions'

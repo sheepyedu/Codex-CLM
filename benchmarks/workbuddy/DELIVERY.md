@@ -1,6 +1,6 @@
 # WorkBuddy delivery and restoration
 
-The running experiment is an isolated Codex CLI 0.169.0 installation using
+The completed historical 65-pair experiment used an isolated Codex CLI 0.169.0 installation using
 `gpt-6.1-sol`. Each arm continues its original thread; tasks are strictly ordered
 `native_i`, `clm_i`, then task `i+1`. The final plan has 65 paired tasks:
 Code20, Office12, Security15, Web18. The original 60-task reference prefix is
@@ -20,7 +20,7 @@ and hashes. The detailed `FRAMEWORK.md` distinguishes the common task wrapper
 from the CLM developer instruction, dynamic memory and ordinary tool observations.
 
 Routine CLM edits change the outgoing API projection. They do not delete the
-CLI's own active history. Original Codex compaction, including the CLM arm's
+CLI's own active history. Original Codex compaction, including the historical CLM arm's
 explicit capacity safeguard, changes that active history while preserving the
 thread and historical JSONL evidence. JSON array bytes and provider input tokens
 are reported separately.
@@ -168,11 +168,11 @@ verdicts and values remain unchanged. `--finalize-existing` validates completed
 CPU grading trials without repeating them. Original failures and all versions are
 retained alongside the applied score overlays.
 
-Publish in a new dated directory under `Codex CLM` in
-`sheepyedu/Skil-RSI-Repository`, preserving earlier CL-Bench content. Verify the
-actual remote parts and manifest, then record the delivery and submit the Notion
-subtask review. The persistent Goal stays active until execution, audit, complete
-archive, report and required delivery work have finished.
+The user changed the final storage destination to the TeamShared rollout
+folder. Complete WorkBuddy trajectories are stored there, preserving earlier
+CL-Bench publications. No new large GitHub trajectory upload is required.
+The user cleared the persistent Goal; this completed experiment is not restarted.
+Formal revised deliverables follow the fixed Notion subtask review workflow.
 
 `prepare_workbuddy_publication.py EXPORT AUDIT SOURCE_SNAPSHOT FRAMEWORK_SNAPSHOT OUTPUT UPLOAD_PLAN`
 stages the actual publication without uploading or changing a branch. It rechecks
@@ -187,3 +187,19 @@ commit and existing parent README must still be fetched before a leased branch
 update. `check_workbuddy_publication.py` uses explicit CPU fixtures and copied real
 wire bytes to verify roundtripping and refusal of changed reports, duplicate task
 bindings and unresolved grader failures; it does not constitute a full65 run.
+
+## 2026-11-19 context policy and scoring audit revision
+
+Current serial dispatch no longer applies the previous-task 165,000-token /
+3-MiB proactive compaction guard. Native automatic compaction and the independent
+64-MiB HTTP transport cap remain. Explicit capacity probes retain manual compact
+RPC support. See [policy change](POLICY_CHANGE_20261119.md). The frozen 65-pair
+experiment used the old guard; no new actor run or persistent Goal is started by
+this change. The complete original trajectories stay in
+`/mount-data/TeamShared/YangYang/rollouts/Codex-CLM/WorkBuddy-20261118`;
+large trajectory upload to GitHub was canceled by the user. Historical publication
+commands below/above are optional archival tooling, not the current storage plan.
+
+[Confirmed score corrections](RESULTS_CORRECTED_20261119.md) preserve original
+scores and provide a separate, bounded offline correction protocol. It is not a
+complete rejudgment of all semantic criteria.
