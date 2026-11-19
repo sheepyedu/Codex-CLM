@@ -8,6 +8,7 @@
 - `start_resume66_owner.sh`：该次用户发起续测的排他owner，保留120条已评分前缀、完整当前home及原两thread。首次原配置实际获得14个完整响应/13条命令后遭遇流超时，原尝试原样封存。
 - `qualify_stream_timeout_v6.py`：对明确的真实上游流超时运行零模型API资格回归，包含旧恢复用例、真实Docker检查点恢复、CLM投影复原、原始policy负例，以及错误信息含timeout时policy仍不可重试的负例。
 - `start_resume67_owner.sh`：仅在source-v6资格通过后，使用正常临时故障恢复入口从上述流超时检查点继续，不重播已执行动作。
+- `resume_after_provider_feedback.py`、`start_resume68_owner.sh`：用户提交问题反馈后明确要求重试时，从formal-67已压缩后的完整CLM61失败历史和工作区续接。入口核对121条已完成前缀、原两会话、9项运行源/3项CLI哈希及检查点；原策略错误仍不可自动重试。首次使用真实最近失败回执判断压力，避免重复原生压缩；若仍为策略拒绝立即停止。用户清除了Goal，这组脚本不创建Goal。反馈已提交的陈述不包装为服务商修复证明。
 
 source-v6与source-v5的运行文件只有 `relay.py` 的两条显式超时消息匹配不同。请求字段、安全元数据和错误代码allowlist保持，原始policy checkpoint仍不符合自动恢复条件。后续任何新的policy拒绝都应停止，不能删字段、改历史或换通道规避。
 
