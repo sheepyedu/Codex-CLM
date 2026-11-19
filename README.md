@@ -46,6 +46,8 @@ flowchart LR
 
 固定方案为正式65题（Code20、Office12、Security15、Web18），先完成四类各一题的配对试跑。执行完成与成绩以实际轨迹和最终审计为准。[交付与恢复说明](benchmarks/workbuddy/DELIVERY.md)包含提示词/框架图生成、逐项评分故障检查、原作答补评、全轨迹归档和分卷还原入口。
 
+[固定实验恢复操作记录](benchmarks/operators/README.md)保留用户确认访问条件后的受控续测入口和实际流超时回归。原生SDK、安全元数据和原始拒绝不改；明确的上游流超时可在原字节、原检查点上有界恢复，`cyber_policy` 等永久错误仍不自动重试。恢复中的额外turn和费用与首次有效结果分开留证。
+
 ## 二进制和复现
 
 服务器使用 npm 官方平台包 `@openai/codex@0.169.0-linux-x64`。固定包来源和校验：

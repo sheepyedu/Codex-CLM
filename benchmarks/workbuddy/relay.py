@@ -58,7 +58,8 @@ def stream_outcome(path, *, chat=False):
 
 def temporary_provider_failure(path):
     """Recognize the provider's explicit retry instructions in failed SSE events."""
-    messages = ("temporarily unavailable", "stream was interrupted", "上游服务暂时不可用", "上游响应中断")
+    messages = ("temporarily unavailable", "stream was interrupted", "上游服务暂时不可用", "上游响应中断",
+                "upstream response stream timed out", "上游响应超时")
     with path.open("rb") as stream:
         for line in stream:
             if not line.startswith(b"data:"):

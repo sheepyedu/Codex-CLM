@@ -17,6 +17,7 @@ def render(directory):
         raise ValueError("A final report requires all 65 audited pairs")
     if [p["position"] for p in paired] != list(range(1, 66)):
         raise ValueError("Audited task order is not the frozen sequence")
+    plan = load(Path(summary["run"]) / "plan.json")
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -59,6 +60,9 @@ def render(directory):
         lines.append(f"| {name} | {row['pairs']} | {row['native']['mean_reward']:.4f} | "
                      f"{row['clm']['mean_reward']:.4f} | {row['reward_delta_mean']:+.4f} | "
                      f"{row['clm_wins']}/{row['ties']}/{row['native_wins']} |")
+    if plan.get("user_requested_access_continuation"):
+        lines += ["", "第61题原生最初被服务端cyber_policy拒绝，未评分、未执行工具。用户随后表示当前账号已获准运行原批安全评测；该审批来源是用户陈述，未独立核验服务商文件。续测保持原账号接口、模型、原生SDK、安全元数据、原题面和原thread，保留原拒绝及失败历史，没有剥离安全字段、重置历史或将policy错误重归类为临时错误。原配置续测先取得14个完整响应和13次命令，随后第15请求返回明确的上游流超时，未取得评分；工作区和当前会话均从该真实状态继续。", "",
+                  "source-environment-v6仅补识别upstream_error对应的显式stream timed out/上游响应超时消息，错误代码allowlist及安全元数据未变。真实失败字节的零模型API回归证明原字节有界重试、只交付完整成功流；原始cyber_policy及含timeout字样的policy仍不可自动重试。完整旧恢复回归、真实Docker根文件/挂载产物恢复与CLM投影复原均通过。原失败、检查点、每次后续尝试和费用均保留；新增continuation turn属于工程恢复，会改变后续可见历史，不能把恢复结果描述为纯首次成功或据此作记忆机制的单独因果归因。"]
     lines += ["", "Code20/80、Office12/50、Security15/60、Web18/70。前60题保持参考实验题序，五道补充安全题在两条原thread的末尾依同序追加。样本沿用既有题池且有容器内题型限制；结果描述此固定样本。", "",
               "官方部分Office评分的检查数量会随提交产物变化。第54题原生214/293、reward0.7304，CLM1363/1888、reward0.7219；同一评分器对缺失表、缺失行或不完整列会跳过相应值检查。因此通过检查的绝对数量和单题pass率不能直接等同于覆盖完整程度。这里保留官方reward，不改分母或补造检查；分类均值按每题等权计算，不把两臂不同数量的原子检查混合汇总。", "",
               "## 上下文与记忆", "", "![逐题请求输入与上下文事件](context-history.png)", "",
