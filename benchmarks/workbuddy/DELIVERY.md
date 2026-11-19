@@ -48,6 +48,22 @@ bytes and tamper cases, including changed questions with recomputed hashes.
 score remains a result. Empty final judge responses, image failures and unresolved
 technical fallbacks block final delivery. A stale retry-error field accompanied
 by a complete final JSON verdict is recorded as a recovered retry.
+Normalized official judge `build_error`, `judge_error` and `ok=false` also require
+review, even when their `errors` list is empty and the wrapper exits successfully.
+They are not automatically treated as model failures or automatically retried.
+
+`repair_workbuddy_csv_bom.py` reproduces task21's original verifier `KeyError` on
+the exact archived UTF-8 BOM CSV. In a copied official verifier it changes only
+the CSV reader codec from `utf-8` to `utf-8-sig`, preserving all thirteen predicates,
+original exporter and output bytes. Both original patches are regraded offline;
+actor/judge model calls remain zero. The separate overlay pins its own immutable
+executed script, original failures, restored patch and CSV digest.
+
+Office atomic-check counts can depend on output coverage: the official task54
+evaluator skips value checks for missing sheets/rows or incomplete columns. Its
+two arms therefore have different test denominators. Reports retain official
+rewards and per-task equal-weight means, disclose this limitation and do not
+interpret raw passed-check totals as a common coverage score.
 
 `repair_workbuddy_judge.py` handles a narrowly identified single empty Web judge
 result. It first proves that the original official functions reproduce the

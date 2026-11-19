@@ -92,6 +92,17 @@ def main(base, run, output):
             "group": "evidence_export_refs", "detail": "wrong JSON type"}]}))
         assert not judge_quality(root, {})["requires_review"]
         checks.append("flag deterministic evaluator crashes masked by exit zero, preserve ordinary rubric failures")
+        normalized = {"judge_name": "rule", "judge_type": "rule_script", "ok": False,
+                      "status": "build_error", "errors": [], "metadata": {"script_exit_code": 0}}
+        score.write_text(json.dumps({"judges": [normalized]}))
+        assert judge_quality(root, {})["requires_review"]
+        normalized.update(ok=True, status="fail")
+        score.write_text(json.dumps({"judges": [normalized]}))
+        assert not judge_quality(root, {})["requires_review"]
+        normalized.update(ok=False, status="judge_error")
+        score.write_text(json.dumps({"judges": [normalized]}))
+        assert judge_quality(root, {})["requires_review"]
+        checks.append("flag normalized official build/judge errors even with empty errors and wrapper exit zero")
     once, once_count = clm_edit_ledger([source.parent.parent.parent])
     twice, twice_count = clm_edit_ledger([source.parent.parent.parent] * 2)
     assert once == twice and once_count == twice_count

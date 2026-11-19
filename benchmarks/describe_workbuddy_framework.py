@@ -140,6 +140,7 @@ MERMAID = '''flowchart TB
   CP[终态临时传输故障\nAGENT_END暂停、工作区镜像及挂载产物、TAR/SHA]
   RES[从当前题快照恢复；同thread续接\n保留原失败与费用；不重做已完成题]
   DNS[追加DNS题初始化\n启动官方named；恢复健康或停止状态；保留区文件]
+  JR[共同评分技术适配与独立复评\n权限 / UTF-8 BOM / 类型守卫 / CBC\n冻结原补丁及产物；不重跑actor\n保留原成绩与失败，附独立评分覆盖层]
   D --> S --> P1 --> CLI
   CLI <--> ACTIVE
   CLI <--> STORE
@@ -160,13 +161,14 @@ MERMAID = '''flowchart TB
   S --> CP --> RES --> CLI
   RES --> E
   S --> DNS --> E
+  J -.技术缺口.-> JR --> R
   classDef original fill:#edf4ff,stroke:#2867a6,color:#122d4a;
   classDef official fill:#edf8f1,stroke:#238159,color:#123b26;
   classDef added fill:#fff0e3,stroke:#e5781a,color:#5c2d08;
   classDef external fill:#f3effb,stroke:#7d60aa,color:#332451;
   class D,J,E official;
   class CLI,ACTIVE,STORE,TOOLS,COMPACT original;
-  class S,P1,R,P2,CT,LIVE,EDIT,PROJ,P3,G,W,N,CP,RES,DNS added;
+  class S,P1,R,P2,CT,LIVE,EDIT,PROJ,P3,G,W,N,CP,RES,DNS,JR added;
   class GPT external;
 '''
 
@@ -179,8 +181,8 @@ def draw(output):
     from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
     font = FontProperties(fname="/usr/share/fonts/truetype/wqy/wqy-microhei.ttc")
     plt.rcParams["svg.fonttype"] = "path"
-    fig, ax = plt.subplots(figsize=(19, 11))
-    ax.set(xlim=(-.3, 18.4), ylim=(-.6, 11.1))
+    fig, ax = plt.subplots(figsize=(19, 12.6))
+    ax.set(xlim=(-.3, 18.4), ylim=(-2.8, 11.1))
     ax.axis("off")
     palette = {"native": ("#edf4ff", "#2867a6"), "added": ("#fff0e3", "#e5781a"),
                "official": ("#edf8f1", "#238159"), "api": ("#f3effb", "#7d60aa")}
@@ -204,6 +206,7 @@ def draw(output):
         "evidence": (9.1, 1.0, "完整证据与差异报告\n模型IO、工具、编辑与压缩\n失败、评分、SHA与已知用量", "added"),
         "recovery": (12.9, 1.0, "临时故障检查点恢复\n工作区镜像、产物、TAR/SHA\n同thread续接，旧失败保留", "added"),
         "prompt": (16.5, 1.0, "所有新增提示词见全文\nP1共同user / P2 CLM developer\nP3动态记忆 / P4工具观察", "added"),
+        "judge_repair": (1.6, -1.5, "评分技术适配与独立复评\n权限 / BOM / 类型守卫 / CBC\n原补丁；无actor重跑\n旧成绩和失败留档", "added"),
     }
     width, height = 3.15, 1.52
     for key, (x, y, text, color) in nodes.items():
@@ -247,11 +250,16 @@ def draw(output):
     arrow((9.1,-.03),(9.1,.24))
     ax.text(5.3,-.03,"官方结果",ha="center",va="center",fontsize=8,fontproperties=font,zorder=5,
             bbox={"facecolor":"white","edgecolor":"none","pad":1})
+    arrow((1.6,.24),(1.6,-.72),dashed=True)
+    ax.plot([3.2,9.1,9.1],[-1.5,-1.5,.08],color="#e5781a",linewidth=1.3,zorder=2)
+    arrow((9.1,.08),(9.1,.24))
+    ax.text(6.0,-1.35,"保留原成绩，附独立覆盖层",ha="center",va="center",fontsize=9,fontproperties=font,
+            color="#c35f12",bbox={"facecolor":"white","edgecolor":"none","pad":1},zorder=5)
     ax.text(1.6, 6.6, "① 所有题目串行\n② Base与CLM环境独立\n③ 两臂共用P1与传输记录\n④ CLM额外P2、P3及编辑命令",
             ha="center", va="top", fontsize=11, linespacing=1.9, fontproperties=font, color="#354251")
     ax.text(1.6, 3.35, "常规CLM编辑作用于API投影\n不会就地删除CLI历史\n原生compaction才更新活跃上下文",
             ha="center", va="center", fontsize=10.5, linespacing=1.8, fontproperties=font, color="#c35f12")
-    ax.text(9, -.35, "概览图；完整连接、全部新增提示词、保护规则与实际请求证据见 FRAMEWORK.md / framework.mmd / PROMPTS.json", ha="center", fontproperties=font, fontsize=10)
+    ax.text(9, -2.6, "概览图；完整连接、全部新增提示词、保护规则与实际请求证据见 FRAMEWORK.md / framework.mmd / PROMPTS.json", ha="center", fontproperties=font, fontsize=10)
     fig.subplots_adjust(left=.02,right=.99,bottom=.03,top=.98)
     for suffix in ("png", "svg", "pdf"):
         fig.savefig(output / f"framework-overview.{suffix}", dpi=180)
@@ -300,6 +308,9 @@ def main(source, run_root, output):
               "每题使用新官方工作区；传输失败时最多三次相同请求，仅完整成功响应交给CLI。任务退出后在AGENT_END保存当前工作区镜像、挂载产物与TAR/SHA，再沿同一thread继续。每个控制器对当前题最多四次有界尝试；修复和资格核验后的新版本可继续原检查点，跨版本物理尝试单独统计。旧失败、额外turn和费用都保留；永久配置/格式/评分错误不自动当作网络故障。", "",
               "追加DNS题显式执行被Harbor默认sleep覆盖的官方服务初始化。健康DNS恢复保留活动区文件，停止状态保持停止；文件快照无法恢复活着但不健康的进程内存，框架在该状态保守停止。两种恢复均已用真实Harbor容器验证，未调用模型API。", "",
               "图示完整终态保护对应transport-v2及以后的实现。早期source-07曾将包含response.failed的HTTP200流转交CLI；该历史失败及后续恢复单独保留，不把后来的修复追溯为此前已生效。", "",
+              "## 评分适配也是橙色修改", "",
+              "官方评分契约保留绿色；新增技术适配和独立复评用橙色旁路表示。包括第4题验证脚本读取权限、第21题CSV的UTF-8 BOM解码、第49题artifact_refs类型守卫，以及第30/53题CBC官方评审依赖。独立复评恢复冻结原补丁和原产物，不重新调用actor，不覆盖原始失败；技术修复后的评分通过独立覆盖层进入报告。第21题两臂原CSV字节不变、原KeyError复现，读取编码修正后原13项断言完整运行。第49题保留134项及缺失原文件的失败检查。", "",
+              "标准化build_error/judge_error/ok=false、空评审响应、未提交交互判定和失败CLI终态均需要技术核验；正常语义fail不因低分重跑。CBC沿用官方评审提示词，此处没有新增actor提示词；P1至P4仍是上文逐字列出的完整新增actor指令与工具反馈边界。", "",
               "## 验证边界", "",
               "源版本和题目终态以各plan、逐题receipt及最终65题审计为准。本文件中的两个例子证明已观察到的具体编辑和原生压缩，不替代完整65题长期评测。它不是对原始CLM论文全部操作空间或训练过程的逐项复现声明。", ""]
     (output / "FRAMEWORK.md").write_text("\n".join(lines))

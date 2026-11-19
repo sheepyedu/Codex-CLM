@@ -315,6 +315,14 @@ def judge_quality(trial, result):
             for index, item in enumerate(value):
                 visit(item, f"{location}[{index}]")
         elif isinstance(value, dict):
+            if (value.get("judge_name") and value.get("judge_type")
+                    and (value.get("ok") is False or value.get("status") in {"judge_error", "build_error"})):
+                identity = ("normalized_judge_error", value["judge_name"], value.get("status"))
+                if identity not in seen:
+                    seen.add(identity)
+                    findings.append({"location": location, "field": identity[0],
+                        "judge": value["judge_name"], "value": value.get("status"),
+                        "errors": value.get("errors", [])})
             if value.get("name") in {"score_eval_core_failed", "evaluator_runtime_error",
                                      "eval_core_import_failed", "evaluator_emitted_no_checks"}:
                 identity = ("deterministic_evaluator_failure", value["name"])
@@ -429,7 +437,7 @@ def judge_repair(root, row, arm, receipt, trial):
         if artifacts not in (["agent.patch"], ["agent.patch", "agent.workspace.tar.gz"]):
             raise ValueError("Unsupported original actor artifact contract")
         if artifacts == ["agent.patch"]:
-            if (repair.get("repair_kind") != "office_artifact_refs_type_guard"
+            if (repair.get("repair_kind") not in {"office_artifact_refs_type_guard", "csv_utf8_bom_reader"}
                     or not repair.get("original_patch_exact")
                     or not repair.get("original_evaluation_reproduced")
                     or repair.get("actor_model_calls") != 0
