@@ -30,35 +30,37 @@ def user_texts(payload):
 
 def completed_response(path):
     terminal = None
-    for line in path.open("rb"):
-        if not line.startswith(b"data:"):
-            continue
-        try:
-            event = json.loads(line[5:])
-        except (ValueError, UnicodeError):
-            continue
-        if isinstance(event, dict) and event.get("type") in {
-                "response.completed", "response.failed", "response.incomplete", "error"}:
-            terminal = event["type"]
+    with path.open("rb") as response:
+        for line in response:
+            if not line.startswith(b"data:"):
+                continue
+            try:
+                event = json.loads(line[5:])
+            except (ValueError, UnicodeError):
+                continue
+            if isinstance(event, dict) and event.get("type") in {
+                    "response.completed", "response.failed", "response.incomplete", "error"}:
+                terminal = event["type"]
     return terminal == "response.completed"
 
 
 def native_prompt(trial, receipt):
     sent, matched = {}, []
-    for line in (trial / "agent/native.jsonl").open():
-        event = json.loads(line)
-        data = event.get("data") or {}
-        if event.get("direction") == "to_codex" and "id" in data:
-            sent[data["id"]] = data
-        elif event.get("direction") == "from_codex":
-            result = data.get("result") or {}
-            if (isinstance(result, dict) and isinstance(result.get("turn"), dict)
-                    and result["turn"].get("id") == receipt["native"]["turn"]):
-                request = sent.get(data.get("id"), {})
-                params = request.get("params") or {}
-                if request.get("method") != "turn/start" or params.get("threadId") != receipt["thread"]:
-                    raise ValueError("Native task turn is not bound to its original start request")
-                matched.append("".join(x.get("text", "") for x in params["input"] if x.get("type") == "text"))
+    with (trial / "agent/native.jsonl").open() as trace:
+        for line in trace:
+            event = json.loads(line)
+            data = event.get("data") or {}
+            if event.get("direction") == "to_codex" and "id" in data:
+                sent[data["id"]] = data
+            elif event.get("direction") == "from_codex":
+                result = data.get("result") or {}
+                if (isinstance(result, dict) and isinstance(result.get("turn"), dict)
+                        and result["turn"].get("id") == receipt["native"]["turn"]):
+                    request = sent.get(data.get("id"), {})
+                    params = request.get("params") or {}
+                    if request.get("method") != "turn/start" or params.get("threadId") != receipt["thread"]:
+                        raise ValueError("Native task turn is not bound to its original start request")
+                    matched.append("".join(x.get("text", "") for x in params["input"] if x.get("type") == "text"))
     if len(matched) != 1:
         raise ValueError("Expected one native turn/start response for the selected completed turn")
     return matched[0]

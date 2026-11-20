@@ -66,3 +66,5 @@ tests/smoke-h20
 真实验收脚本需要 GPT API。它生成独立合成数据，通过原生 shell 读入长文件、保存精确标记、编辑上下文、确认结果和重新读取标记。实际 CLI JSONL 保存在服务器的 `evidence/`，逐请求上下文长度、指纹和 HTTP 状态保存在 `runs/<session>/responses.jsonl`。源码仓库仅包含运行代码及合成验收脚本。
 
 2026-11-19：WorkBuddy串行入口已[去除165,000 token / 3MiB题间主动压缩](benchmarks/workbuddy/POLICY_CHANGE_20261119.md)。旧65题成绩保留，已确认评分问题的[独立校正表](benchmarks/workbuddy/RESULTS_CORRECTED_20261119.md)另列，未重跑模型作答。
+
+本分支提供 WorkBuddy 的[强制题中编辑 Context 插件](benchmarks/forced_context_edit/README.md)，每完成两题进行一次独立的 CLM 整理回合，再继续原线程。

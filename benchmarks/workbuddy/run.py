@@ -259,7 +259,7 @@ async def one_trial(root, frozen, row, arm, previous, key, base_url, context, re
     private = arm_root / "evidence" / name
     private.mkdir(mode=0o700, parents=True)
     (private / "wire").mkdir()
-    home = arm_root / "home"
+    home = Path(frozen["state_home"]) if "state_home" in frozen else arm_root / "home"
     home.mkdir(mode=0o700, exist_ok=True)
     if context:
         if context.directory.exists():

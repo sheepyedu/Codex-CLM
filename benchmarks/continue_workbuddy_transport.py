@@ -143,6 +143,8 @@ async def resilient_trial(root, frozen, row, arm, previous, key, base_url, conte
         saved["artifacts"] = str(archive / "checkpoint/artifacts")
         saved["archive"] = str(archive / "checkpoint/image.tar")
         recovery = {"checkpoint": saved, "failed_evidence": str(archive), "attempt": attempt + 1}
+        if previous is None:
+            previous = {"thread": saved["thread"]}
         write_json(archive / "recovery-intent.json", recovery)
         print(f"RECOVER {row['position']} {arm} checkpoint {saved['image_id']}", flush=True)
         await asyncio.sleep(min(30 * 2 ** (attempt - 1), 300))

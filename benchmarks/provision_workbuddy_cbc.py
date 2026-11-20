@@ -31,10 +31,11 @@ def actor_done(directory):
     if native.get("native_exit") != 0 or not native.get("turn"):
         return None
     completed = None
-    for line in timeline.open():
-        event = json.loads(line).get("data") or {}
-        if event.get("method") == "turn/completed":
-            completed = (event.get("params") or {}).get("turn") or {}
+    with timeline.open() as trace:
+        for line in trace:
+            event = json.loads(line).get("data") or {}
+            if event.get("method") == "turn/completed":
+                completed = (event.get("params") or {}).get("turn") or {}
     if not completed or completed.get("id") != native["turn"] or completed.get("status") != "completed":
         return None
     return {"thread": native["thread"], "turn": native["turn"], "native_result_sha256": sha(result),

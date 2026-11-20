@@ -159,6 +159,9 @@ stream_idle_timeout_ms = 930000
 
 
 def run(opts, instruction):
+    housekeeping = opts.get("phase") == "context-maintenance"
+    if housekeeping and not (opts["arm"] == "clm" and opts["thread"] and not opts["compact"]):
+        raise ValueError("Maintenance requires a resumed CLM thread")
     configure(opts)
     native = Native()
     records = {}
@@ -190,6 +193,8 @@ def run(opts, instruction):
             "and use earlier conversation and /serial-home/notes for applicable reusable knowledge.\n\n"
             + instruction
         )
+        if housekeeping:
+            prompt = instruction
         (ROOT / "prompt-model.txt").write_text(prompt)
         started = native.request("turn/start", {"threadId": thread_id,
                                                  "input": [{"type": "text", "text": prompt}]})
